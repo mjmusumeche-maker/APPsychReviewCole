@@ -1,0 +1,1870 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>AP Psychology Review</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Source+Sans+3:wght@300;400;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #f0eadf;
+  --card-bg: #fffdf8;
+  --dark: #1a1a2e;
+  --accent: #6c5ce7;
+  --accent2: #a855f7;
+  --gold: #f0a500;
+  --green: #2ecc71;
+  --red: #e74c3c;
+  --blue: #3498db;
+  --text: #2d2d2d;
+  --text-light: #6b6b6b;
+  --border: #d5cec3;
+  --science: #3b82f6;
+  --behavior: #10b981;
+  --mind: #8b5cf6;
+  --growth: #22c55e;
+  --social: #f59e0b;
+  --health: #ef4444;
+  --wisdom: #fbbf24;
+  --common-border: #9ca3af;
+  --uncommon-border: #22c55e;
+  --rare-border: #3b82f6;
+  --epic-border: #8b5cf6;
+  --legendary-border: #f59e0b;
+  --mythical-border: #ec4899;
+}
+* { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+body {
+  font-family:'Source Sans 3',sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  max-width:480px;
+  margin:0 auto;
+  min-height:100vh;
+  position:relative;
+  overflow-x:hidden;
+}
+body::before {
+  content:'';
+  position:fixed;
+  top:0;left:0;right:0;bottom:0;
+  background-image:
+    radial-gradient(circle at 20% 30%, rgba(108,92,231,0.04) 0%, transparent 50%),
+    radial-gradient(circle at 80% 70%, rgba(168,85,247,0.04) 0%, transparent 50%),
+    url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 5 Q35 15 30 25 Q25 15 30 5' fill='none' stroke='%236c5ce720' stroke-width='0.5'/%3E%3Ccircle cx='30' cy='30' r='8' fill='none' stroke='%236c5ce710' stroke-width='0.5'/%3E%3Cpath d='M15 45 Q20 35 25 45' fill='none' stroke='%236c5ce710' stroke-width='0.5'/%3E%3Cpath d='M35 45 Q40 35 45 45' fill='none' stroke='%236c5ce710' stroke-width='0.5'/%3E%3C/svg%3E");
+  background-size: cover, cover, 60px 60px;
+  pointer-events:none;
+  z-index:0;
+  max-width:480px;
+  margin:0 auto;
+}
+.app { position:relative; z-index:1; padding-bottom:70px; }
+
+/* Loading Screen */
+.loading-screen {
+  position:fixed;top:0;left:0;right:0;bottom:0;
+  background:var(--dark);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  z-index:9999;
+  transition:opacity 0.5s;
+  max-width:480px;margin:0 auto;
+}
+.loading-screen.hidden { opacity:0; pointer-events:none; }
+.loading-brain {
+  width:80px;height:80px;
+  border:4px solid rgba(108,92,231,0.3);
+  border-top-color:var(--accent);
+  border-radius:50%;
+  animation:spin 1s linear infinite;
+}
+@keyframes spin { to { transform:rotate(360deg); } }
+.loading-text {
+  font-family:'Playfair Display',serif;
+  color:white;font-size:1.2rem;
+  margin-top:20px;
+  animation:pulse 1.5s ease-in-out infinite;
+}
+@keyframes pulse { 0%,100%{opacity:0.5} 50%{opacity:1} }
+
+/* Navigation */
+.bottom-nav {
+  position:fixed;bottom:0;left:0;right:0;
+  background:var(--dark);
+  display:flex;justify-content:space-around;
+  padding:8px 0 calc(8px + env(safe-area-inset-bottom));
+  z-index:100;
+  max-width:480px;margin:0 auto;
+  border-top:2px solid var(--accent);
+}
+.nav-btn {
+  background:none;border:none;color:#888;
+  font-family:'Source Sans 3',sans-serif;
+  font-size:0.7rem;font-weight:600;
+  display:flex;flex-direction:column;align-items:center;gap:3px;
+  cursor:pointer;padding:4px 12px;
+  transition:color 0.2s;
+}
+.nav-btn.active { color:var(--accent); }
+.nav-btn svg { width:22px;height:22px; }
+
+/* Hero Section */
+.hero-card {
+  background:var(--dark);
+  margin:12px;
+  border-radius:16px;
+  padding:28px 20px;
+  position:relative;
+  overflow:hidden;
+}
+.hero-card::before {
+  content:'Ψ';
+  position:absolute;
+  font-size:200px;
+  font-family:'Playfair Display',serif;
+  color:rgba(108,92,231,0.06);
+  top:-30px;right:-20px;
+  font-weight:900;
+}
+.hero-card::after {
+  content:'';
+  position:absolute;top:0;left:0;right:0;bottom:0;
+  background:repeating-linear-gradient(
+    45deg,transparent,transparent 10px,
+    rgba(108,92,231,0.03) 10px,rgba(108,92,231,0.03) 11px
+  );
+}
+.hero-title {
+  font-family:'Playfair Display',serif;
+  font-size:1.8rem;font-weight:900;
+  color:white;position:relative;z-index:1;
+  line-height:1.2;
+}
+.hero-subtitle {
+  color:var(--accent);font-size:0.9rem;
+  font-weight:600;margin-top:6px;
+  position:relative;z-index:1;
+  letter-spacing:1px;text-transform:uppercase;
+}
+.hero-stats {
+  display:flex;gap:16px;margin-top:16px;
+  position:relative;z-index:1;
+}
+.hero-stat {
+  background:rgba(108,92,231,0.15);
+  border-radius:10px;padding:10px 14px;
+  flex:1;text-align:center;
+}
+.hero-stat-val {
+  font-family:'JetBrains Mono',monospace;
+  color:white;font-size:1.3rem;font-weight:700;
+}
+.hero-stat-label {
+  color:#999;font-size:0.7rem;
+  text-transform:uppercase;letter-spacing:0.5px;
+  margin-top:2px;
+}
+
+/* Section Headers */
+.section-header {
+  font-family:'Playfair Display',serif;
+  font-size:1.3rem;font-weight:700;
+  padding:20px 16px 10px;
+  color:var(--dark);
+}
+
+/* Unit Cards on Home */
+.unit-grid { padding:0 12px 12px; display:flex; flex-direction:column; gap:10px; }
+.unit-card {
+  background:var(--card-bg);
+  border-radius:12px;
+  padding:16px;
+  border:1px solid var(--border);
+  cursor:pointer;
+  transition:transform 0.15s, box-shadow 0.15s;
+  display:flex;align-items:center;gap:14px;
+}
+.unit-card:active { transform:scale(0.98); }
+.unit-icon {
+  width:48px;height:48px;
+  border-radius:12px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.4rem;flex-shrink:0;
+}
+.unit-card-info { flex:1; }
+.unit-card-title { font-weight:700;font-size:0.95rem; }
+.unit-card-topics { color:var(--text-light);font-size:0.8rem;margin-top:2px; }
+.unit-card-progress {
+  height:4px;background:#e5e5e5;border-radius:2px;
+  margin-top:8px;overflow:hidden;
+}
+.unit-card-progress-fill {
+  height:100%;border-radius:2px;
+  transition:width 0.3s;
+}
+
+/* Page containers */
+.page { display:none; }
+.page.active { display:block; }
+
+/* Study View */
+.study-topic-list { padding:0 12px 12px; display:flex; flex-direction:column; gap:8px; }
+.study-topic-btn {
+  background:var(--card-bg);border:1px solid var(--border);
+  border-radius:10px;padding:14px 16px;
+  text-align:left;cursor:pointer;
+  font-family:'Source Sans 3',sans-serif;
+  font-size:0.95rem;font-weight:600;
+  display:flex;align-items:center;justify-content:between;
+  transition:transform 0.15s;
+  width:100%;
+}
+.study-topic-btn:active { transform:scale(0.98); }
+.study-content {
+  padding:16px;
+  animation:fadeIn 0.3s;
+}
+@keyframes fadeIn { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:translateY(0)} }
+.study-section {
+  background:var(--card-bg);
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:16px;margin-bottom:12px;
+}
+.study-section h3 {
+  font-family:'Playfair Display',serif;
+  font-size:1.05rem;margin-bottom:8px;
+  color:var(--dark);
+}
+.study-section p {
+  font-size:0.9rem;line-height:1.6;
+  color:var(--text);
+}
+.study-section strong { color:var(--accent); font-weight:700; }
+
+/* Back buttons */
+.back-btn {
+  background:none;border:none;
+  font-family:'Source Sans 3',sans-serif;
+  font-size:0.9rem;font-weight:600;
+  color:var(--accent);cursor:pointer;
+  padding:12px 16px;
+  display:flex;align-items:center;gap:6px;
+}
+
+/* Quiz */
+.quiz-unit-select { padding:0 12px 12px; display:flex; flex-direction:column; gap:8px; }
+.quiz-unit-btn {
+  background:var(--card-bg);border:1px solid var(--border);
+  border-radius:10px;padding:14px 16px;
+  text-align:left;cursor:pointer;
+  font-family:'Source Sans 3',sans-serif;
+  font-size:0.95rem;font-weight:600;
+  transition:transform 0.15s;width:100%;
+  display:flex;justify-content:space-between;align-items:center;
+}
+.quiz-unit-btn:active { transform:scale(0.98); }
+.quiz-badge {
+  background:var(--accent);color:white;
+  font-size:0.7rem;padding:2px 8px;
+  border-radius:10px;font-family:'JetBrains Mono',monospace;
+}
+.quiz-container {
+  padding:12px;
+  animation:fadeIn 0.3s;
+}
+.quiz-progress {
+  display:flex;align-items:center;gap:10px;
+  margin-bottom:16px;
+}
+.quiz-progress-bar {
+  flex:1;height:6px;background:#e5e5e5;
+  border-radius:3px;overflow:hidden;
+}
+.quiz-progress-fill {
+  height:100%;background:var(--accent);
+  border-radius:3px;transition:width 0.3s;
+}
+.quiz-progress-text {
+  font-family:'JetBrains Mono',monospace;
+  font-size:0.8rem;color:var(--text-light);
+  white-space:nowrap;
+}
+.quiz-question-card {
+  background:var(--card-bg);
+  border:1px solid var(--border);
+  border-radius:14px;padding:20px;
+  margin-bottom:12px;
+}
+.quiz-q-text {
+  font-size:0.95rem;line-height:1.6;
+  margin-bottom:16px;font-weight:500;
+}
+.stimulus-box {
+  background:#f8f5f0;
+  border-left:3px solid var(--accent);
+  padding:12px 14px;
+  margin-bottom:14px;
+  border-radius:0 8px 8px 0;
+  font-style:italic;
+  font-size:0.88rem;
+  line-height:1.5;
+  color:#444;
+}
+.stimulus-source {
+  font-style:normal;font-size:0.75rem;
+  color:var(--text-light);margin-top:6px;
+  text-align:right;
+}
+.quiz-choices { display:flex; flex-direction:column; gap:8px; }
+.quiz-choice {
+  background:white;border:2px solid var(--border);
+  border-radius:10px;padding:12px 14px;
+  cursor:pointer;font-size:0.9rem;
+  line-height:1.4;transition:all 0.2s;
+  text-align:left;width:100%;
+  font-family:'Source Sans 3',sans-serif;
+}
+.quiz-choice:active { transform:scale(0.98); }
+.quiz-choice.selected { border-color:var(--accent);background:rgba(108,92,231,0.05); }
+.quiz-choice.correct { border-color:var(--green);background:rgba(46,204,113,0.1); }
+.quiz-choice.incorrect { border-color:var(--red);background:rgba(231,76,60,0.1); }
+.quiz-choice.disabled { pointer-events:none; }
+.quiz-explanation {
+  background:#f0ecff;
+  border-radius:10px;padding:14px;
+  margin-top:12px;font-size:0.88rem;
+  line-height:1.5;
+  animation:fadeIn 0.3s;
+}
+.quiz-explanation .key-concept {
+  display:inline-block;
+  background:var(--accent);color:white;
+  font-size:0.72rem;font-weight:700;
+  padding:2px 8px;border-radius:6px;
+  margin-top:8px;text-transform:uppercase;
+  letter-spacing:0.5px;
+}
+.quiz-next-btn {
+  background:var(--accent);color:white;
+  border:none;border-radius:10px;
+  padding:12px 24px;font-size:0.95rem;
+  font-weight:600;cursor:pointer;
+  width:100%;margin-top:12px;
+  font-family:'Source Sans 3',sans-serif;
+  transition:background 0.2s;
+}
+.quiz-next-btn:active { background:var(--accent2); }
+.quiz-results {
+  text-align:center;padding:30px 16px;
+  animation:fadeIn 0.4s;
+}
+.quiz-results-score {
+  font-family:'JetBrains Mono',monospace;
+  font-size:3rem;font-weight:700;
+  color:var(--accent);
+}
+.quiz-results-label {
+  font-size:1rem;color:var(--text-light);
+  margin-top:4px;
+}
+.quiz-results-msg {
+  font-family:'Playfair Display',serif;
+  font-size:1.3rem;margin-top:16px;
+  color:var(--dark);
+}
+
+/* Flashcards */
+.flashcard-container { padding:12px;text-align:center; }
+.flashcard-counter {
+  font-family:'JetBrains Mono',monospace;
+  font-size:0.85rem;color:var(--text-light);
+  margin-bottom:12px;
+}
+.flashcard {
+  background:var(--card-bg);
+  border:2px solid var(--border);
+  border-radius:16px;
+  padding:40px 24px;
+  min-height:250px;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  cursor:pointer;
+  transition:transform 0.3s;
+  position:relative;
+}
+.flashcard.flipped { background:linear-gradient(135deg,#f0ecff,#fffdf8); border-color:var(--accent); }
+.flashcard-label {
+  position:absolute;top:12px;left:16px;
+  font-size:0.7rem;text-transform:uppercase;
+  letter-spacing:1px;font-weight:700;
+  color:var(--text-light);
+}
+.flashcard-text {
+  font-size:1.05rem;line-height:1.6;
+  max-width:340px;
+}
+.flashcard.flipped .flashcard-text {
+  font-family:'Playfair Display',serif;
+  font-size:1.4rem;font-weight:700;
+  color:var(--accent);
+}
+.flashcard-hint {
+  font-size:0.75rem;color:var(--text-light);
+  margin-top:12px;
+}
+.flashcard-nav {
+  display:flex;gap:12px;margin-top:16px;
+  justify-content:center;
+}
+.flashcard-nav-btn {
+  background:var(--card-bg);border:1px solid var(--border);
+  border-radius:10px;padding:10px 24px;
+  cursor:pointer;font-family:'Source Sans 3',sans-serif;
+  font-size:0.9rem;font-weight:600;
+  transition:all 0.15s;
+}
+.flashcard-nav-btn:active { transform:scale(0.95); }
+.flashcard-nav-btn.primary {
+  background:var(--accent);color:white;border-color:var(--accent);
+}
+
+/* Cards Collection */
+.cards-header {
+  display:flex;justify-content:space-between;
+  align-items:center;padding:0 16px;margin-bottom:12px;
+}
+.cards-coins {
+  font-family:'JetBrains Mono',monospace;
+  font-size:0.9rem;font-weight:700;
+  color:var(--gold);
+  display:flex;align-items:center;gap:4px;
+}
+.cards-collected {
+  font-size:0.8rem;color:var(--text-light);
+}
+.pack-btn {
+  background:linear-gradient(135deg,var(--accent),var(--accent2));
+  color:white;border:none;border-radius:12px;
+  padding:14px;width:calc(100% - 24px);
+  margin:0 12px 16px;cursor:pointer;
+  font-family:'Playfair Display',serif;
+  font-size:1.1rem;font-weight:700;
+  position:relative;overflow:hidden;
+  transition:transform 0.15s;
+}
+.pack-btn:active { transform:scale(0.97); }
+.pack-btn:disabled {
+  background:#ccc;cursor:not-allowed;
+  transform:none;
+}
+.pack-btn .cost {
+  font-family:'JetBrains Mono',monospace;
+  font-size:0.8rem;font-weight:400;
+  display:block;margin-top:2px;opacity:0.9;
+}
+.collection-grid {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:8px;padding:0 12px 12px;
+}
+.mini-card {
+  background:var(--card-bg);
+  border:2px solid var(--border);
+  border-radius:10px;
+  padding:8px;text-align:center;
+  cursor:pointer;
+  transition:transform 0.15s;
+  position:relative;overflow:hidden;
+}
+.mini-card:active { transform:scale(0.95); }
+.mini-card.locked {
+  background:#eee;opacity:0.5;
+  cursor:default;
+}
+.mini-card.locked::after {
+  content:'?';
+  position:absolute;top:50%;left:50%;
+  transform:translate(-50%,-50%);
+  font-size:2rem;color:#bbb;font-weight:700;
+}
+.mini-card-img {
+  width:100%;height:80px;
+  object-fit:contain;
+  border-radius:6px;
+  background:#f5f5f5;
+}
+.mini-card-name {
+  font-size:0.7rem;font-weight:600;
+  margin-top:4px;
+  overflow:hidden;text-overflow:ellipsis;
+  white-space:nowrap;
+}
+.mini-card-rarity {
+  font-size:0.6rem;
+  margin-top:2px;
+}
+
+/* Full Card Modal */
+.card-modal {
+  position:fixed;top:0;left:0;right:0;bottom:0;
+  background:rgba(0,0,0,0.85);
+  z-index:200;display:none;
+  align-items:center;justify-content:center;
+  padding:20px;
+  max-width:480px;margin:0 auto;
+}
+.card-modal.active { display:flex; }
+.full-card {
+  width:300px;
+  border-radius:16px;
+  padding:3px;
+  position:relative;
+  animation:cardReveal 0.5s ease-out;
+}
+@keyframes cardReveal {
+  from{transform:scale(0.5) rotateY(180deg);opacity:0}
+  to{transform:scale(1) rotateY(0);opacity:1}
+}
+.full-card-inner {
+  background:#1a1a2e;
+  border-radius:14px;
+  padding:16px;
+  position:relative;
+  overflow:hidden;
+}
+.full-card-header {
+  display:flex;justify-content:space-between;
+  align-items:center;margin-bottom:10px;
+}
+.full-card-name {
+  font-family:'Playfair Display',serif;
+  font-size:1rem;font-weight:700;
+  color:white;flex:1;
+}
+.full-card-hp {
+  font-family:'JetBrains Mono',monospace;
+  font-size:0.9rem;font-weight:700;
+  color:var(--red);
+  display:flex;align-items:center;gap:2px;
+}
+.full-card-element {
+  font-size:0.75rem;color:#aaa;margin-bottom:8px;
+}
+.full-card-img-container {
+  width:100%;height:200px;
+  background:#2a2a3e;
+  border-radius:10px;
+  overflow:hidden;
+  display:flex;align-items:center;justify-content:center;
+  margin-bottom:10px;
+}
+.full-card-img {
+  width:100%;height:100%;
+  object-fit:contain;
+}
+.full-card-img-fallback {
+  font-size:4rem;
+}
+.full-card-type-badge {
+  display:inline-block;
+  font-size:0.65rem;font-weight:700;
+  text-transform:uppercase;letter-spacing:1px;
+  padding:2px 8px;border-radius:4px;
+  background:rgba(108,92,231,0.3);
+  color:var(--accent);margin-bottom:8px;
+}
+.full-card-title {
+  font-size:0.8rem;color:#ccc;
+  font-style:italic;margin-bottom:2px;
+}
+.full-card-years {
+  font-family:'JetBrains Mono',monospace;
+  font-size:0.72rem;color:#888;
+  margin-bottom:8px;
+}
+.full-card-fact {
+  background:rgba(108,92,231,0.1);
+  border-radius:8px;padding:10px;
+  font-size:0.8rem;line-height:1.5;
+  color:#ddd;margin-bottom:10px;
+}
+.full-card-footer {
+  display:flex;justify-content:space-between;
+  align-items:center;
+}
+.full-card-stars { font-size:0.8rem; }
+.full-card-number {
+  font-family:'JetBrains Mono',monospace;
+  font-size:0.7rem;color:#666;
+}
+.full-card-rarity {
+  font-size:0.7rem;font-weight:700;
+  text-transform:uppercase;letter-spacing:1px;
+}
+
+/* Rarity glows */
+.rarity-common { background:linear-gradient(135deg,#9ca3af,#6b7280); }
+.rarity-uncommon { background:linear-gradient(135deg,#22c55e,#16a34a); }
+.rarity-rare { background:linear-gradient(135deg,#3b82f6,#2563eb); }
+.rarity-epic { background:linear-gradient(135deg,#8b5cf6,#7c3aed); }
+.rarity-legendary { background:linear-gradient(135deg,#f59e0b,#d97706); }
+.rarity-mythical { background:linear-gradient(135deg,#ec4899,#f59e0b,#8b5cf6);background-size:200% 200%;animation:mythGlow 3s ease infinite; }
+@keyframes mythGlow { 0%{background-position:0% 50%} 50%{background-position:100% 50%} 100%{background-position:0% 50%} }
+
+.mythical-pulse {
+  animation:mythPulse 2s ease-in-out infinite;
+}
+@keyframes mythPulse {
+  0%,100%{box-shadow:0 0 20px rgba(236,72,153,0.3)}
+  50%{box-shadow:0 0 40px rgba(236,72,153,0.6), 0 0 60px rgba(245,158,11,0.3)}
+}
+
+/* Holographic shimmer */
+.holo-shimmer::after {
+  content:'';
+  position:absolute;top:0;left:-100%;
+  width:50%;height:100%;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,0.08),transparent);
+  animation:shimmer 3s infinite;
+  pointer-events:none;
+}
+@keyframes shimmer { 0%{left:-100%} 100%{left:200%} }
+
+/* Pack opening animation */
+.pack-opening {
+  position:fixed;top:0;left:0;right:0;bottom:0;
+  background:rgba(0,0,0,0.9);
+  z-index:300;display:none;
+  align-items:center;justify-content:center;
+  flex-direction:column;
+  max-width:480px;margin:0 auto;
+}
+.pack-opening.active { display:flex; }
+.pack-card-reveal {
+  animation:packReveal 0.8s ease-out;
+}
+@keyframes packReveal {
+  0%{transform:scale(0) rotateY(360deg);opacity:0}
+  60%{transform:scale(1.1) rotateY(0);opacity:1}
+  100%{transform:scale(1);opacity:1}
+}
+.pack-tap-text {
+  color:white;font-size:0.9rem;
+  margin-top:20px;
+  animation:pulse 1.5s ease-in-out infinite;
+}
+
+/* Collection complete banner */
+.collection-complete {
+  background:linear-gradient(135deg,#f59e0b,#ec4899);
+  color:white;text-align:center;
+  padding:12px;margin:0 12px 12px;
+  border-radius:10px;
+  font-family:'Playfair Display',serif;
+  font-weight:700;font-size:1rem;
+}
+
+/* Toast notification */
+.toast {
+  position:fixed;top:20px;left:50%;
+  transform:translateX(-50%);
+  background:var(--dark);color:white;
+  padding:10px 20px;border-radius:10px;
+  font-size:0.85rem;font-weight:600;
+  z-index:500;
+  animation:toastIn 0.3s ease-out, toastOut 0.3s ease-in 1.7s forwards;
+  max-width:300px;text-align:center;
+}
+@keyframes toastIn { from{opacity:0;transform:translateX(-50%) translateY(-20px)} to{opacity:1;transform:translateX(-50%) translateY(0)} }
+@keyframes toastOut { to{opacity:0;transform:translateX(-50%) translateY(-20px)} }
+
+/* Missed questions review */
+.missed-list { padding:0 12px 12px; }
+.missed-item {
+  background:var(--card-bg);
+  border:1px solid var(--border);
+  border-left:3px solid var(--red);
+  border-radius:0 10px 10px 0;
+  padding:12px;margin-bottom:8px;
+  font-size:0.88rem;line-height:1.5;
+}
+.missed-item .correct-ans {
+  color:var(--green);font-weight:600;
+  margin-top:4px;font-size:0.82rem;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width:4px; }
+::-webkit-scrollbar-thumb { background:var(--border);border-radius:2px; }
+
+/* Tabs within sections */
+.sub-tabs {
+  display:flex;gap:6px;padding:0 12px 12px;
+  overflow-x:auto;
+}
+.sub-tab {
+  background:var(--card-bg);border:1px solid var(--border);
+  border-radius:20px;padding:6px 14px;
+  font-size:0.8rem;font-weight:600;
+  cursor:pointer;white-space:nowrap;
+  transition:all 0.2s;
+  font-family:'Source Sans 3',sans-serif;
+}
+.sub-tab.active {
+  background:var(--accent);color:white;
+  border-color:var(--accent);
+}
+
+/* Filter row for cards */
+.filter-row {
+  display:flex;gap:6px;padding:0 12px 12px;
+  overflow-x:auto;flex-wrap:nowrap;
+}
+.filter-btn {
+  background:var(--card-bg);border:1px solid var(--border);
+  border-radius:16px;padding:4px 12px;
+  font-size:0.72rem;font-weight:600;
+  cursor:pointer;white-space:nowrap;
+  font-family:'Source Sans 3',sans-serif;
+}
+.filter-btn.active { background:var(--dark);color:white;border-color:var(--dark); }
+</style>
+</head>
+<body>
+
+<!-- Loading Screen -->
+<div class="loading-screen" id="loadingScreen">
+  <div class="loading-brain"></div>
+  <div class="loading-text">Loading AP Psychology...</div>
+</div>
+
+<div class="app" id="app">
+
+<!-- ==================== HOME PAGE ==================== -->
+<div class="page active" id="homePage">
+  <div class="hero-card">
+    <div class="hero-title">AP Psychology</div>
+    <div class="hero-subtitle">2024–25 CED · 5 Units · Exam Review</div>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="hero-stat-val" id="homeCoins">0</div>
+        <div class="hero-stat-label">Coins</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-val" id="homeStreak">0</div>
+        <div class="hero-stat-label">Streak</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-val" id="homeCorrect">0</div>
+        <div class="hero-stat-label">Correct</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-val" id="homeCards">0</div>
+        <div class="hero-stat-label">Cards</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-header">Units</div>
+  <div class="unit-grid" id="unitGrid"></div>
+
+  <div class="section-header">Missed Questions</div>
+  <div class="missed-list" id="missedList">
+    <p style="padding:0 4px;font-size:0.88rem;color:var(--text-light);">No missed questions yet. Start a quiz!</p>
+  </div>
+</div>
+
+<!-- ==================== STUDY PAGE ==================== -->
+<div class="page" id="studyPage">
+  <div class="section-header">Study</div>
+  <div class="sub-tabs" id="studyUnitTabs"></div>
+  <div id="studyTopicList" class="study-topic-list"></div>
+  <div id="studyContentView" style="display:none;"></div>
+</div>
+
+<!-- ==================== QUIZ PAGE ==================== -->
+<div class="page" id="quizPage">
+  <div class="section-header">Quiz</div>
+  <div id="quizUnitSelect" class="quiz-unit-select"></div>
+  <div id="quizContainer" class="quiz-container" style="display:none;"></div>
+</div>
+
+<!-- ==================== FLASHCARDS PAGE ==================== -->
+<div class="page" id="flashcardsPage">
+  <div class="section-header">Flashcards</div>
+  <div class="sub-tabs" id="flashcardUnitTabs"></div>
+  <div id="flashcardContainer" class="flashcard-container"></div>
+</div>
+
+<!-- ==================== CARDS PAGE ==================== -->
+<div class="page" id="cardsPage">
+  <div class="section-header">Collection</div>
+  <div class="cards-header">
+    <div class="cards-coins">🪙 <span id="cardsCoins">0</span></div>
+    <div class="cards-collected"><span id="cardsCollected">0</span>/42 collected</div>
+  </div>
+  <div id="collectionBanner"></div>
+  <button class="pack-btn" id="packBtn" onclick="openPack()">
+    🎴 Open Card Pack
+    <span class="cost">3 coins per pack</span>
+  </button>
+  <div class="filter-row" id="cardFilters"></div>
+  <div class="collection-grid" id="collectionGrid"></div>
+</div>
+
+</div><!-- end app -->
+
+<!-- Bottom Navigation -->
+<nav class="bottom-nav">
+  <button class="nav-btn active" onclick="switchPage('home')" id="navHome">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    Home
+  </button>
+  <button class="nav-btn" onclick="switchPage('study')" id="navStudy">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg>
+    Study
+  </button>
+  <button class="nav-btn" onclick="switchPage('quiz')" id="navQuiz">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+    Quiz
+  </button>
+  <button class="nav-btn" onclick="switchPage('flashcards')" id="navFlashcards">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><line x1="12" y1="4" x2="12" y2="20"/></svg>
+    Flash
+  </button>
+  <button class="nav-btn" onclick="switchPage('cards')" id="navCards">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M12 8v8m-4-4h8"/></svg>
+    Cards
+  </button>
+</nav>
+
+<!-- Card Detail Modal -->
+<div class="card-modal" id="cardModal" onclick="closeCardModal(event)">
+  <div id="cardModalContent"></div>
+</div>
+
+<!-- Pack Opening Overlay -->
+<div class="pack-opening" id="packOpening" onclick="handlePackTap()">
+  <div id="packRevealArea"></div>
+  <div class="pack-tap-text" id="packTapText">Tap to continue</div>
+</div>
+
+<script>
+// =====================================================
+// DATA: Study Content, Questions, Flashcards, Cards
+// =====================================================
+
+const UNITS = [
+  { id:1, name:"Biological Bases of Behavior", icon:"🧬", color:"#3b82f6",
+    topics:["1.1 Interaction of Heredity and Environment","1.2 Overview of the Nervous System","1.3 The Neuron and Neural Firing","1.4 The Brain","1.5 Sleep","1.6 Sensation"]},
+  { id:2, name:"Cognition", icon:"🧠", color:"#8b5cf6",
+    topics:["2.1 Perception","2.2 Thinking, Problem-Solving, Judgments & Decision-Making","2.3 Introduction to Memory","2.4 Encoding Memories","2.5 Storing Memories","2.6 Retrieving Memories","2.7 Forgetting and Other Memory Challenges","2.8 Intelligence and Achievement"]},
+  { id:3, name:"Development and Learning", icon:"🌱", color:"#22c55e",
+    topics:["3.1 Themes and Methods in Developmental Psychology","3.2 Physical Development Across the Lifespan","3.3 Gender and Sexual Orientation","3.4 Cognitive Development Across the Lifespan","3.5 Communication and Language Development","3.6 Social-Emotional Development Across the Lifespan","3.7 Classical Conditioning","3.8 Operant Conditioning","3.9 Social, Cognitive, and Neurological Factors in Learning"]},
+  { id:4, name:"Social Psychology and Personality", icon:"👥", color:"#f59e0b",
+    topics:["4.1 Attribution Theory and Person Perception","4.2 Attitude Formation and Attitude Change","4.3 Psychology of Social Situations","4.4 Psychodynamic and Humanistic Theories of Personality","4.5 Social-Cognitive and Trait Theories of Personality","4.6 Motivation","4.7 Emotion"]},
+  { id:5, name:"Mental and Physical Health", icon:"💊", color:"#ef4444",
+    topics:["5.1 Introduction to Health Psychology","5.2 Positive Psychology","5.3 Explaining and Classifying Psychological Disorders","5.4 Selection of Categories of Psychological Disorders","5.5 Treatment of Psychological Disorders"]}
+];
+
+// ========================
+// STUDY CONTENT
+// ========================
+const STUDY = {
+"1.1":[
+  {title:"Nature vs. Nurture",text:"The <strong>nature-nurture debate</strong> examines how <strong>genetic inheritance</strong> (nature) and <strong>environmental factors</strong> (nurture) interact to shape behavior. Modern psychology recognizes that virtually all traits result from <strong>gene-environment interaction</strong> — genes may predispose, but environment activates or suppresses expression."},
+  {title:"Behavioral Genetics",text:"<strong>Twin studies</strong> compare concordance rates between <strong>monozygotic (identical)</strong> and <strong>dizygotic (fraternal)</strong> twins to estimate heritability. <strong>Adoption studies</strong> separate genetic from environmental influences by comparing adopted children to both biological and adoptive parents."},
+  {title:"Epigenetics",text:"<strong>Epigenetics</strong> studies how environmental factors can alter <strong>gene expression</strong> without changing the DNA sequence itself. Stress, nutrition, and toxins can add or remove <strong>methyl groups</strong> to DNA, effectively turning genes on or off — sometimes across generations."},
+  {title:"Evolutionary Psychology",text:"<strong>Evolutionary psychology</strong> applies <strong>natural selection</strong> principles to explain behavioral tendencies. Traits that enhanced <strong>survival and reproduction</strong> in ancestral environments may persist today — such as fear of snakes or preference for high-calorie foods."}
+],
+"1.2":[
+  {title:"Central and Peripheral Nervous Systems",text:"The <strong>central nervous system (CNS)</strong> consists of the <strong>brain and spinal cord</strong>, serving as the body's command center. The <strong>peripheral nervous system (PNS)</strong> connects the CNS to the rest of the body via sensory and motor neurons."},
+  {title:"Somatic vs. Autonomic",text:"The PNS divides into the <strong>somatic nervous system</strong> (voluntary muscle control) and the <strong>autonomic nervous system</strong> (involuntary functions). The autonomic system further splits into <strong>sympathetic</strong> (fight-or-flight arousal) and <strong>parasympathetic</strong> (rest-and-digest calming) divisions."},
+  {title:"The Endocrine System",text:"The <strong>endocrine system</strong> communicates via <strong>hormones</strong> released into the bloodstream by glands. The <strong>pituitary gland</strong> (master gland) is regulated by the <strong>hypothalamus</strong> and influences growth, stress, and reproduction. <strong>Adrenal glands</strong> release cortisol and adrenaline during stress."},
+  {title:"Neural Communication Overview",text:"Information travels through the nervous system via <strong>electrochemical signals</strong>. <strong>Sensory (afferent) neurons</strong> carry information toward the brain; <strong>motor (efferent) neurons</strong> carry commands away; and <strong>interneurons</strong> connect neurons within the CNS."}
+],
+"1.3":[
+  {title:"Neuron Structure",text:"A typical neuron has <strong>dendrites</strong> (receive signals), a <strong>cell body/soma</strong> (integrates signals), an <strong>axon</strong> (transmits signals), and <strong>terminal buttons</strong> (release neurotransmitters). The <strong>myelin sheath</strong> insulates the axon, speeding transmission via <strong>saltatory conduction</strong>."},
+  {title:"Action Potential",text:"Neurons fire via the <strong>all-or-none principle</strong>: if stimulation reaches the <strong>threshold</strong>, the neuron fires at full strength. During the <strong>action potential</strong>, sodium ions rush in (depolarization) and potassium ions flow out (repolarization). The <strong>refractory period</strong> prevents immediate re-firing."},
+  {title:"Synaptic Transmission",text:"At the <strong>synapse</strong>, electrical signals become chemical. <strong>Neurotransmitters</strong> are released from <strong>vesicles</strong> in the presynaptic terminal, cross the <strong>synaptic cleft</strong>, and bind to <strong>receptors</strong> on the postsynaptic neuron. Excess neurotransmitters undergo <strong>reuptake</strong> or enzymatic breakdown."},
+  {title:"Key Neurotransmitters",text:"<strong>Serotonin</strong> regulates mood and sleep. <strong>Dopamine</strong> affects reward, motivation, and movement. <strong>Acetylcholine</strong> is crucial for muscle action and memory. <strong>GABA</strong> is the main inhibitory neurotransmitter. <strong>Glutamate</strong> is the main excitatory neurotransmitter. <strong>Norepinephrine</strong> modulates arousal and alertness."}
+],
+"1.4":[
+  {title:"Brain Structures & Methods",text:"Psychologists study the brain using <strong>lesion studies</strong>, <strong>EEG</strong> (electrical activity), <strong>CT/MRI</strong> (structure), <strong>PET</strong> (metabolic activity), and <strong>fMRI</strong> (blood flow/activity). Each method offers different trade-offs between <strong>spatial and temporal resolution</strong>."},
+  {title:"The Brainstem and Cerebellum",text:"The <strong>medulla</strong> controls vital autonomic functions (breathing, heart rate). The <strong>pons</strong> helps coordinate movement and bridges signals. The <strong>reticular formation</strong> filters sensory input and controls arousal. The <strong>cerebellum</strong> coordinates voluntary movement, balance, and motor learning."},
+  {title:"Limbic System",text:"The <strong>thalamus</strong> relays sensory information (except smell) to the cortex. The <strong>hypothalamus</strong> regulates hunger, thirst, body temperature, and the endocrine system. The <strong>amygdala</strong> processes fear and emotional memory. The <strong>hippocampus</strong> is essential for forming new explicit memories."},
+  {title:"Cerebral Cortex",text:"The cortex has four <strong>lobes</strong>: <strong>frontal</strong> (planning, personality, motor — includes Broca's area), <strong>parietal</strong> (somatosensory processing), <strong>temporal</strong> (auditory processing, Wernicke's area), and <strong>occipital</strong> (visual processing). <strong>Association areas</strong> integrate complex information across regions."}
+],
+"1.5":[
+  {title:"Sleep Stages",text:"Sleep alternates between <strong>NREM</strong> (stages N1, N2, N3) and <strong>REM</strong> sleep in ~90-minute cycles. <strong>N3 (slow-wave sleep)</strong> features delta waves and is critical for physical restoration. <strong>REM sleep</strong> involves rapid eye movements, near-paralysis, and vivid dreaming."},
+  {title:"Sleep Theories",text:"The <strong>restorative theory</strong> proposes sleep repairs the body and consolidates memory. <strong>Evolutionary/adaptive theory</strong> suggests sleep conserves energy and avoids predators. <strong>Memory consolidation</strong> research shows sleep strengthens newly formed neural connections."},
+  {title:"Sleep Disorders",text:"<strong>Insomnia</strong> is difficulty falling or staying asleep. <strong>Narcolepsy</strong> involves sudden, uncontrollable episodes of REM sleep. <strong>Sleep apnea</strong> causes repeated breathing interruptions. <strong>Night terrors</strong> occur during N3 sleep and differ from nightmares (which occur in REM)."},
+  {title:"Circadian Rhythms",text:"The <strong>circadian rhythm</strong> is a ~24-hour biological clock regulated by the <strong>suprachiasmatic nucleus (SCN)</strong> in the hypothalamus. Light exposure signals the SCN to suppress <strong>melatonin</strong> production from the pineal gland. Disruptions (jet lag, shift work) impair cognition and health."}
+],
+"1.6":[
+  {title:"Transduction & Thresholds",text:"<strong>Sensation</strong> is the detection of physical energy by sensory receptors. <strong>Transduction</strong> converts stimuli into neural signals. The <strong>absolute threshold</strong> is the minimum stimulation needed for detection 50% of the time. The <strong>difference threshold (JND)</strong> is governed by <strong>Weber's law</strong>."},
+  {title:"Vision",text:"Light enters through the <strong>cornea</strong>, passes through the <strong>pupil</strong> (controlled by the iris), and is focused by the <strong>lens</strong> onto the <strong>retina</strong>. <strong>Rods</strong> detect dim light; <strong>cones</strong> detect color and detail. Information travels via the <strong>optic nerve</strong> to the visual cortex in the occipital lobe."},
+  {title:"Hearing & Other Senses",text:"Sound waves vibrate the <strong>eardrum</strong>, are amplified by <strong>ossicles</strong>, and converted to neural signals by <strong>hair cells</strong> in the <strong>cochlea</strong>. <strong>Place theory</strong> explains high-pitch detection; <strong>frequency theory</strong> explains low-pitch. Smell and taste are <strong>chemical senses</strong> processed differently than vision/hearing."},
+  {title:"Signal Detection Theory",text:"<strong>Signal detection theory</strong> explains that detecting a stimulus depends not only on its intensity but also on <strong>psychological factors</strong> like expectation, motivation, and fatigue. Responses are classified as <strong>hits, misses, false alarms, or correct rejections</strong>."}
+],
+"2.1":[
+  {title:"Top-Down vs. Bottom-Up Processing",text:"<strong>Bottom-up processing</strong> builds perception from raw sensory data — stimulus drives interpretation. <strong>Top-down processing</strong> uses existing knowledge, expectations, and context to interpret stimuli. Most perception involves both simultaneously."},
+  {title:"Gestalt Principles",text:"<strong>Gestalt psychology</strong> describes how we organize visual elements into wholes. Key principles include <strong>proximity</strong> (grouping nearby items), <strong>similarity</strong> (grouping similar items), <strong>closure</strong> (completing incomplete figures), <strong>continuity</strong> (following smooth lines), and <strong>figure-ground</strong> (distinguishing foreground from background)."},
+  {title:"Depth & Motion Perception",text:"<strong>Monocular cues</strong> (linear perspective, relative size, overlap, texture gradient) work with one eye. <strong>Binocular cues</strong> require both eyes: <strong>retinal disparity</strong> (different images from each eye) and <strong>convergence</strong> (eye muscle tension). <strong>Motion perception</strong> includes the phi phenomenon and stroboscopic motion."},
+  {title:"Perceptual Constancies & Illusions",text:"<strong>Perceptual constancy</strong> allows us to perceive objects as stable despite changing sensory input — including <strong>size, shape, and color constancy</strong>. <strong>Visual illusions</strong> (e.g., Müller-Lyer) reveal how perceptual assumptions can lead to systematic errors in interpretation."}
+],
+"2.2":[
+  {title:"Concepts & Problem-Solving",text:"<strong>Concepts</strong> are mental categories. We often use <strong>prototypes</strong> (best examples) to categorize. <strong>Problem-solving strategies</strong> include <strong>algorithms</strong> (guaranteed but slow), <strong>heuristics</strong> (fast but fallible), and <strong>insight</strong> (sudden realization). <strong>Fixation</strong> and <strong>mental set</strong> can block creative solutions."},
+  {title:"Heuristics and Biases",text:"<strong>Representativeness heuristic</strong>: judging probability by similarity to a prototype (ignoring base rates). <strong>Availability heuristic</strong>: estimating frequency by ease of recall. <strong>Anchoring bias</strong>: over-relying on initial information. <strong>Confirmation bias</strong>: seeking evidence that supports existing beliefs."},
+  {title:"Language and Thought",text:"<strong>Whorf's linguistic relativity hypothesis</strong> proposes language shapes thought. The strong version (language determines thought) is largely rejected; the weak version (language influences thought) has empirical support. <strong>Bilingualism</strong> has been associated with cognitive flexibility and executive function benefits."},
+  {title:"Decision-Making",text:"<strong>Framing effects</strong> show that how choices are presented influences decisions — people are risk-averse with gains but risk-seeking with losses. <strong>Overconfidence bias</strong> leads people to overestimate their accuracy. <strong>Belief perseverance</strong> is clinging to initial beliefs despite contradictory evidence."}
+],
+"2.3":[
+  {title:"Memory Models",text:"The <strong>Atkinson-Shiffrin model</strong> proposes three stages: <strong>sensory memory</strong> (brief, large capacity), <strong>short-term memory</strong> (limited duration/capacity), and <strong>long-term memory</strong> (relatively permanent, unlimited). <strong>Working memory</strong> (Baddeley) expands STM to include active processing components."},
+  {title:"Types of Memory",text:"<strong>Explicit (declarative) memory</strong> includes <strong>semantic</strong> (facts/knowledge) and <strong>episodic</strong> (personal experiences) memory. <strong>Implicit (nondeclarative) memory</strong> includes <strong>procedural memory</strong> (skills/habits) and classically conditioned associations. Implicit memory operates without conscious awareness."},
+  {title:"Sensory Memory",text:"<strong>Iconic memory</strong> stores visual information for about 0.5 seconds (Sperling's partial report). <strong>Echoic memory</strong> stores auditory information for 3–4 seconds. Sensory memory has large capacity but rapid decay — only attended items move to short-term memory."},
+  {title:"Working Memory Capacity",text:"Short-term memory holds about <strong>7 ± 2 items</strong> (Miller's magic number). <strong>Chunking</strong> groups items into meaningful units to expand effective capacity. <strong>Working memory</strong> actively manipulates information and relies on the <strong>central executive, phonological loop, and visuospatial sketchpad</strong>."}
+],
+"2.4":[
+  {title:"Encoding Strategies",text:"<strong>Elaborative rehearsal</strong> (connecting new info to existing knowledge) produces stronger encoding than <strong>maintenance rehearsal</strong> (simple repetition). <strong>Semantic encoding</strong> (processing meaning) is deepest and most effective. <strong>Visual and acoustic encoding</strong> are shallower alternatives."},
+  {title:"Levels of Processing",text:"<strong>Craik and Lockhart's levels of processing</strong> framework shows that <strong>deeper processing</strong> (analyzing meaning) creates more durable memories than <strong>shallow processing</strong> (analyzing appearance or sound). <strong>Self-referencing</strong> — relating material to yourself — enhances encoding further."},
+  {title:"Encoding Context Effects",text:"<strong>Context-dependent memory</strong>: recall improves when the retrieval environment matches the encoding environment. <strong>State-dependent memory</strong>: recall improves when internal state (mood, arousal) at retrieval matches encoding. Both demonstrate <strong>encoding specificity principle</strong> (Tulving)."},
+  {title:"Mnemonic Devices",text:"<strong>Mnemonic devices</strong> are encoding strategies that impose structure. <strong>Method of loci</strong> associates items with physical locations. <strong>Peg-word system</strong> links items to a pre-memorized sequence. <strong>Acronyms and acrostics</strong> organize first letters. All leverage <strong>visual imagery</strong> and organization."}
+],
+"2.5":[
+  {title:"Long-Term Potentiation",text:"<strong>Long-term potentiation (LTP)</strong> is the strengthening of synaptic connections through repeated stimulation — the neural basis of learning and memory. LTP occurs prominently in the <strong>hippocampus</strong> and involves increased neurotransmitter release and receptor sensitivity."},
+  {title:"Brain Structures and Memory",text:"The <strong>hippocampus</strong> is critical for forming new <strong>explicit memories</strong>. The <strong>amygdala</strong> strengthens emotional memories. The <strong>cerebellum</strong> and <strong>basal ganglia</strong> are involved in <strong>implicit/procedural memory</strong>. <strong>H.M. (Henry Molaison)</strong> lost the ability to form new explicit memories after bilateral hippocampal removal."},
+  {title:"Memory Consolidation",text:"<strong>Consolidation</strong> is the process by which short-term memories become stable long-term memories. <strong>Sleep</strong> — especially slow-wave and REM sleep — plays a critical role. Memories are gradually transferred from hippocampus to <strong>distributed cortical networks</strong> over time."},
+  {title:"Schemas and Reconstruction",text:"Memories are stored within <strong>schemas</strong> — organized frameworks of knowledge. During storage, memories can be <strong>reconstructed</strong> to fit existing schemas, introducing distortions. <strong>Bartlett's War of the Ghosts</strong> study demonstrated that recall is shaped by cultural schemas."}
+],
+"2.6":[
+  {title:"Retrieval Cues",text:"<strong>Retrieval cues</strong> are stimuli that help access stored memories. <strong>Recall</strong> requires generating information from memory (essays). <strong>Recognition</strong> requires identifying previously encountered items (multiple choice). <strong>Relearning</strong> (savings method) measures how much faster material is learned the second time."},
+  {title:"Priming and Spreading Activation",text:"<strong>Priming</strong> occurs when exposure to one stimulus influences response to a subsequent stimulus. This reflects <strong>spreading activation</strong> — activating one node in a semantic network activates related concepts. Priming demonstrates the power of <strong>implicit memory</strong>."},
+  {title:"Serial Position Effect",text:"The <strong>serial position effect</strong> shows we best remember items at the beginning (<strong>primacy effect</strong> — rehearsed into LTM) and end (<strong>recency effect</strong> — still in STM) of a list. Items in the middle are recalled worst. A delay before recall eliminates the recency but not primacy effect."},
+  {title:"Tip-of-the-Tongue and Recall Failures",text:"<strong>Tip-of-the-tongue (TOT)</strong> phenomenon is the feeling of knowing something without being able to retrieve it. <strong>Retrieval failure</strong> often results from inadequate cues. <strong>Encoding specificity</strong> explains why returning to the original context (physical or emotional) aids recall."}
+],
+"2.7":[
+  {title:"Forgetting Curves and Theories",text:"<strong>Ebbinghaus's forgetting curve</strong> shows rapid initial forgetting that levels off over time. <strong>Decay theory</strong> says memories fade with time. <strong>Interference theory</strong> is better supported: <strong>proactive interference</strong> (old disrupts new) and <strong>retroactive interference</strong> (new disrupts old)."},
+  {title:"Memory Distortion",text:"<strong>Misinformation effect</strong> (Loftus): post-event information alters memory of the original event. <strong>Source monitoring errors</strong> confuse where a memory originated. <strong>Imagination inflation</strong>: imagining an event increases confidence it actually happened. These demonstrate memory is <strong>reconstructive</strong>, not reproductive."},
+  {title:"False Memories",text:"<strong>False memories</strong> are vivid recollections of events that never occurred. Loftus's <strong>lost-in-the-mall</strong> study showed false memories can be implanted through suggestion. <strong>Flashbulb memories</strong> feel vivid and certain but are not necessarily more accurate than ordinary memories."},
+  {title:"Amnesia and Motivated Forgetting",text:"<strong>Retrograde amnesia</strong> is loss of memories formed before brain injury. <strong>Anterograde amnesia</strong> is inability to form new memories after injury (as in H.M.'s case). <strong>Motivated forgetting</strong> may involve <strong>suppression</strong> (conscious) or <strong>repression</strong> (unconscious, controversial in research)."}
+],
+"2.8":[
+  {title:"Theories of Intelligence",text:"<strong>Spearman's g</strong> (general intelligence factor) proposes a single underlying ability. <strong>Gardner's multiple intelligences</strong> (linguistic, logical, spatial, musical, etc.) challenge this. <strong>Sternberg's triarchic theory</strong> identifies analytical, creative, and practical intelligence components."},
+  {title:"Intelligence Testing",text:"<strong>Binet</strong> created the first intelligence test to identify struggling students. <strong>IQ</strong> was originally mental age ÷ chronological age × 100; modern tests use <strong>deviation IQ</strong> (mean=100, SD=15). <strong>Wechsler scales</strong> (WAIS, WISC) are the most widely used today."},
+  {title:"Reliability and Validity",text:"Good tests must be <strong>reliable</strong> (consistent results) and <strong>valid</strong> (measuring what they claim). <strong>Test-retest reliability</strong> checks consistency over time. <strong>Content validity</strong> ensures the test samples the relevant domain. <strong>Predictive validity</strong> measures how well scores predict future performance."},
+  {title:"Nature, Nurture, and Group Differences",text:"IQ is influenced by both <strong>heredity</strong> (twin studies show ~50–80% heritability) and <strong>environment</strong> (nutrition, education, SES). <strong>The Flynn effect</strong> — rising IQ scores over generations — highlights environmental influence. Group differences in scores reflect <strong>systemic inequalities</strong>, not innate differences."}
+],
+"3.1":[
+  {title:"Research Methods in Development",text:"<strong>Cross-sectional studies</strong> compare different age groups at one time (fast but confounded by <strong>cohort effects</strong>). <strong>Longitudinal studies</strong> follow the same group over time (no cohort effects but expensive, subject to attrition). Both help identify <strong>developmental changes</strong>."},
+  {title:"Developmental Themes",text:"Key themes include <strong>continuity vs. discontinuity</strong> (gradual change vs. distinct stages), <strong>stability vs. change</strong> (traits persist or transform), and <strong>nature vs. nurture</strong> (biology vs. experience). Most modern research emphasizes <strong>interaction</strong> between these factors."},
+  {title:"Critical and Sensitive Periods",text:"<strong>Critical periods</strong> are windows when certain experiences must occur for normal development (e.g., language acquisition before puberty). <strong>Sensitive periods</strong> are optimal — but not absolute — windows. <strong>Teratogens</strong> (alcohol, drugs, viruses) can cause damage during <strong>prenatal critical periods</strong>."},
+  {title:"Prenatal Development",text:"The three stages are <strong>germinal</strong> (0–2 weeks, implantation), <strong>embryonic</strong> (2–8 weeks, organ formation, most vulnerable to teratogens), and <strong>fetal</strong> (9 weeks–birth, growth and maturation). <strong>Fetal alcohol spectrum disorders (FASD)</strong> result from prenatal alcohol exposure."}
+],
+"3.2":[
+  {title:"Infant Physical Development",text:"Newborns come equipped with <strong>reflexes</strong> (rooting, sucking, grasping, Moro). Motor development follows <strong>cephalocaudal</strong> (head-to-toe) and <strong>proximodistal</strong> (center-outward) patterns. <strong>Brain development</strong> involves rapid synaptogenesis followed by <strong>synaptic pruning</strong>."},
+  {title:"Adolescent Development",text:"<strong>Puberty</strong> involves hormonal changes leading to sexual maturation. The brain undergoes significant <strong>prefrontal cortex development</strong> continuing into the mid-20s, explaining adolescent risk-taking. <strong>Myelination</strong> of frontal lobes improves impulse control and decision-making over time."},
+  {title:"Adulthood and Aging",text:"Physical abilities generally peak in early adulthood and gradually decline. <strong>Menopause</strong> marks the end of fertility in women. Cognitive decline varies: <strong>fluid intelligence</strong> (processing speed, novel problem-solving) decreases, while <strong>crystallized intelligence</strong> (accumulated knowledge) remains stable or increases."},
+  {title:"Neuroplasticity Across the Lifespan",text:"<strong>Neuroplasticity</strong> is the brain's ability to reorganize by forming new neural connections. It is greatest in childhood but continues throughout life. <strong>Enriched environments</strong> promote neural growth. Recovery from brain damage is possible through reorganization of function to undamaged areas."}
+],
+"3.3":[
+  {title:"Sex and Gender",text:"<strong>Sex</strong> refers to biological characteristics (chromosomes, hormones, anatomy). <strong>Gender</strong> refers to the social and psychological aspects of being male, female, or another identity. <strong>Gender identity</strong> is one's internal sense of gender. <strong>Gender expression</strong> is how one presents gender externally."},
+  {title:"Gender Development Theories",text:"<strong>Social learning theory</strong> emphasizes observation and reinforcement of gender-typed behavior. <strong>Gender schema theory</strong> (Bem) proposes children develop cognitive frameworks for gender that guide perception and behavior. <strong>Biological perspectives</strong> point to prenatal hormones and brain differences."},
+  {title:"Sexual Orientation",text:"<strong>Sexual orientation</strong> involves patterns of emotional and sexual attraction. Research suggests it involves a complex interaction of <strong>genetic, hormonal, and environmental</strong> factors. <strong>Prenatal hormone exposure</strong> and genetic studies (twin concordance) support biological contributions."},
+  {title:"Intersections of Sex, Gender, and Culture",text:"<strong>Gender roles</strong> vary significantly across cultures and historical periods. <strong>Androgyny</strong> describes individuals who express both traditionally masculine and feminine traits. Research shows gender similarities often outweigh differences on most psychological variables (<strong>gender similarities hypothesis</strong>)."}
+],
+"3.4":[
+  {title:"Piaget's Stages",text:"<strong>Sensorimotor</strong> (0–2): learning through senses/actions, developing <strong>object permanence</strong>. <strong>Preoperational</strong> (2–7): symbolic thinking but <strong>egocentric</strong>, lacking <strong>conservation</strong>. <strong>Concrete operational</strong> (7–11): logical thinking about concrete events. <strong>Formal operational</strong> (12+): <strong>abstract and hypothetical reasoning</strong>."},
+  {title:"Vygotsky's Sociocultural Theory",text:"<strong>Vygotsky</strong> emphasized that cognitive development is driven by <strong>social interaction</strong>. The <strong>zone of proximal development (ZPD)</strong> is the gap between what a child can do alone and with guidance. <strong>Scaffolding</strong> provides temporary support that is gradually removed as competence grows."},
+  {title:"Information Processing Approach",text:"This approach views cognitive development as <strong>gradual, continuous improvement</strong> in processing capacity, speed, and strategies — rather than discrete stages. <strong>Attention, memory strategies, and metacognition</strong> all develop throughout childhood and adolescence."},
+  {title:"Cognitive Aging",text:"With aging, <strong>processing speed</strong> declines and <strong>working memory</strong> capacity may shrink. However, <strong>wisdom, expertise, and crystallized knowledge</strong> often increase. <strong>Dementia</strong> (including Alzheimer's disease) is a pathological condition, not a normal part of aging. Cognitive engagement may provide protective benefits."}
+],
+"3.5":[
+  {title:"Language Development Milestones",text:"Infants progress from <strong>cooing</strong> (~2 months) to <strong>babbling</strong> (~6 months) to <strong>one-word/holophrastic stage</strong> (~12 months) to <strong>two-word/telegraphic speech</strong> (~24 months). <strong>Overgeneralization</strong> of grammatical rules (e.g., 'goed') demonstrates rule-learning, not mere imitation."},
+  {title:"Theories of Language Acquisition",text:"<strong>Chomsky's nativist theory</strong> proposes an innate <strong>language acquisition device (LAD)</strong> with a <strong>universal grammar</strong>. <strong>Skinner's behaviorist view</strong> emphasizes reinforcement and imitation. <strong>Interactionist perspectives</strong> integrate biological readiness with social interaction and input."},
+  {title:"Critical Period for Language",text:"Evidence from <strong>feral children</strong> (e.g., Genie) and <strong>deaf children's sign language acquisition</strong> supports a <strong>critical/sensitive period</strong> for language — roughly before puberty. After this window, achieving native-level fluency becomes significantly more difficult."},
+  {title:"Bilingualism and Language",text:"<strong>Bilingual</strong> individuals may show advantages in <strong>executive function</strong> and cognitive flexibility. <strong>Code-switching</strong> between languages is a sign of competence, not confusion. Second language acquisition follows similar stages but is influenced by <strong>first language transfer</strong>."}
+],
+"3.6":[
+  {title:"Attachment Theory",text:"<strong>Bowlby</strong> proposed that infants are biologically programmed to form <strong>attachments</strong> that promote survival. <strong>Ainsworth's Strange Situation</strong> identified <strong>secure, avoidant, anxious-ambivalent</strong>, and later <strong>disorganized</strong> attachment styles. Early attachment predicts later social and emotional functioning."},
+  {title:"Erikson's Psychosocial Stages",text:"<strong>Erikson</strong> proposed eight stages of psychosocial development across the lifespan. Key crises: <strong>trust vs. mistrust</strong> (infancy), <strong>identity vs. role confusion</strong> (adolescence), <strong>intimacy vs. isolation</strong> (young adulthood), and <strong>integrity vs. despair</strong> (late adulthood)."},
+  {title:"Parenting Styles",text:"<strong>Baumrind</strong> identified three styles: <strong>authoritative</strong> (high warmth, high control — best outcomes), <strong>authoritarian</strong> (low warmth, high control), and <strong>permissive</strong> (high warmth, low control). <strong>Uninvolved/neglectful</strong> parenting (low both) was added later. Cultural context influences which style is most adaptive."},
+  {title:"Social Development in Adolescence and Adulthood",text:"Adolescents develop <strong>identity</strong> through exploration (Marcia's identity statuses: achievement, moratorium, foreclosure, diffusion). <strong>Peer influence</strong> peaks in adolescence. Adulthood involves navigating <strong>intimate relationships, generativity</strong> (contributing to the next generation), and <strong>life review</strong> in later years."}
+],
+"3.7":[
+  {title:"Pavlov and Classical Conditioning",text:"<strong>Classical conditioning</strong> pairs a <strong>neutral stimulus (NS)</strong> with an <strong>unconditioned stimulus (US)</strong> that naturally produces an <strong>unconditioned response (UR)</strong>. After repeated pairing, the NS becomes a <strong>conditioned stimulus (CS)</strong> that elicits a <strong>conditioned response (CR)</strong>."},
+  {title:"Key Processes",text:"<strong>Acquisition</strong>: the CS-US pairing phase. <strong>Extinction</strong>: the CR weakens when CS is presented without US. <strong>Spontaneous recovery</strong>: the CR reappears after a rest period. <strong>Stimulus generalization</strong>: responding to similar stimuli. <strong>Stimulus discrimination</strong>: responding only to the specific CS."},
+  {title:"Applications of Classical Conditioning",text:"<strong>Watson's Little Albert</strong> study conditioned fear of a white rat in an infant. <strong>Taste aversions</strong> can develop in a single trial — an evolutionary adaptation (<strong>Garcia effect</strong>). <strong>Systematic desensitization</strong> (Wolpe) uses counterconditioning to treat phobias by pairing feared stimuli with relaxation."},
+  {title:"Biological Constraints on Conditioning",text:"<strong>Biological preparedness</strong> (Seligman) means organisms are predisposed to associate certain stimuli more easily — like taste with nausea or visual cues with shock. This challenges the behaviorist assumption that any stimulus can be equally conditioned. Evolution shapes what associations form most readily."}
+],
+"3.8":[
+  {title:"Thorndike and Skinner",text:"<strong>Thorndike's law of effect</strong>: behaviors followed by satisfying consequences are strengthened. <strong>Skinner</strong> expanded this into <strong>operant conditioning</strong>, distinguishing behaviors by their consequences. The <strong>Skinner box (operant chamber)</strong> allowed precise measurement of learning."},
+  {title:"Reinforcement",text:"<strong>Positive reinforcement</strong>: adding a pleasant stimulus increases behavior. <strong>Negative reinforcement</strong>: removing an aversive stimulus increases behavior. Both strengthen behavior. <strong>Primary reinforcers</strong> satisfy biological needs; <strong>secondary (conditioned) reinforcers</strong> are learned (money, grades)."},
+  {title:"Punishment and Schedules",text:"<strong>Positive punishment</strong>: adding aversive stimulus decreases behavior. <strong>Negative punishment</strong>: removing pleasant stimulus decreases behavior. <strong>Schedules of reinforcement</strong>: <strong>fixed-ratio</strong> (every nth response), <strong>variable-ratio</strong> (unpredictable number — most resistant to extinction), <strong>fixed-interval</strong>, <strong>variable-interval</strong>."},
+  {title:"Shaping and Behavior Modification",text:"<strong>Shaping</strong> reinforces successive approximations toward a target behavior. <strong>Chaining</strong> links simple behaviors into complex sequences. <strong>Token economies</strong> use secondary reinforcers exchangeable for rewards. <strong>Behavior modification</strong> applies operant principles in clinical, educational, and organizational settings."}
+],
+"3.9":[
+  {title:"Observational Learning",text:"<strong>Bandura's social learning theory</strong> shows that learning occurs by watching <strong>models</strong>. The <strong>Bobo doll experiment</strong> demonstrated children imitate aggressive behavior. Four processes: <strong>attention, retention, reproduction, and motivation</strong>. <strong>Vicarious reinforcement/punishment</strong> affects whether observed behavior is performed."},
+  {title:"Cognitive Factors in Learning",text:"<strong>Latent learning</strong> (Tolman): learning occurs without reinforcement and is demonstrated only when motivation exists (e.g., <strong>cognitive maps</strong> in rats). <strong>Insight learning</strong> (Köhler): sudden understanding of problem solutions without trial-and-error. Both challenge strict behaviorism."},
+  {title:"Mirror Neurons",text:"<strong>Mirror neurons</strong> fire both when performing an action and when observing someone else perform it. They may underlie <strong>imitation, empathy, and social learning</strong>. Their discovery supports the neurological basis of observational learning and understanding others' intentions."},
+  {title:"Learned Helplessness",text:"<strong>Seligman's learned helplessness</strong>: organisms exposed to inescapable aversive events stop trying to escape even when escape becomes possible. This has been linked to <strong>depression</strong> in humans. <strong>Explanatory style</strong> (internal, stable, global attributions for failure) predicts vulnerability to helplessness."}
+],
+"4.1":[
+  {title:"Attribution Theory",text:"<strong>Attribution theory</strong> explains how people interpret the causes of behavior. <strong>Dispositional (internal) attributions</strong> credit personality/character. <strong>Situational (external) attributions</strong> credit circumstances. <strong>Fritz Heider</strong> pioneered the study of how ordinary people explain events."},
+  {title:"Fundamental Attribution Error",text:"The <strong>fundamental attribution error (FAE)</strong> is the tendency to overestimate dispositional factors and underestimate situational factors when explaining others' behavior. This bias is <strong>stronger in individualistic cultures</strong>. We show an <strong>actor-observer bias</strong> — attributing our own behavior more to situations."},
+  {title:"Self-Serving Bias",text:"The <strong>self-serving bias</strong> leads people to attribute successes to internal factors and failures to external factors. This protects <strong>self-esteem</strong>. <strong>Just-world hypothesis</strong> (Lerner) — the belief that people get what they deserve — can lead to blaming victims for their misfortunes."},
+  {title:"Person Perception",text:"<strong>First impressions</strong> form rapidly and are heavily influenced by <strong>physical appearance, nonverbal cues, and schemas</strong>. The <strong>halo effect</strong> extends a positive impression of one trait to unrelated traits. <strong>Self-fulfilling prophecies</strong> occur when expectations about a person elicit behavior that confirms those expectations."}
+],
+"4.2":[
+  {title:"Attitude Components and Formation",text:"Attitudes have <strong>cognitive</strong> (beliefs), <strong>affective</strong> (feelings), and <strong>behavioral</strong> (actions) components. Attitudes form through <strong>direct experience, conditioning, observational learning</strong>, and social influence. <strong>Mere exposure effect</strong>: repeated exposure to a stimulus increases liking."},
+  {title:"Cognitive Dissonance",text:"<strong>Festinger's cognitive dissonance theory</strong>: holding contradictory beliefs or behaving inconsistently with beliefs creates psychological tension. People reduce dissonance by <strong>changing beliefs, adding consonant cognitions, or trivializing</strong> the inconsistency. The less external justification, the greater the attitude change."},
+  {title:"Persuasion",text:"The <strong>elaboration likelihood model (ELM)</strong> proposes two routes to persuasion: <strong>central route</strong> (careful evaluation of arguments — leads to lasting change) and <strong>peripheral route</strong> (influenced by superficial cues like attractiveness or credibility — leads to temporary change)."},
+  {title:"Attitudes and Behavior",text:"Attitudes predict behavior best when they are <strong>strong, specific, and accessible</strong>. <strong>Foot-in-the-door technique</strong>: small compliance leads to larger compliance. <strong>Door-in-the-face technique</strong>: large request followed by smaller target request. People align attitudes with behavior to reduce dissonance."}
+],
+"4.3":[
+  {title:"Conformity",text:"<strong>Asch's conformity experiments</strong> showed people conform to an obviously incorrect group answer about 37% of the time. Conformity increases with <strong>group size (to a point), unanimity, and low self-confidence</strong>. <strong>Normative influence</strong> (desire to fit in) and <strong>informational influence</strong> (desire to be correct) both drive conformity."},
+  {title:"Obedience",text:"<strong>Milgram's obedience studies</strong> demonstrated that ~65% of participants administered maximum voltage shocks when instructed by an authority figure. Obedience decreased with <strong>physical proximity to the victim, absence of authority, and presence of disobedient peers</strong>."},
+  {title:"Group Dynamics",text:"<strong>Social facilitation</strong>: presence of others enhances performance on simple tasks but impairs complex tasks. <strong>Social loafing</strong>: reduced effort in groups. <strong>Groupthink</strong> (Janis): groups prioritize harmony over critical thinking. <strong>Group polarization</strong>: group discussion strengthens pre-existing attitudes."},
+  {title:"Prosocial Behavior and Aggression",text:"<strong>Bystander effect</strong>: the more bystanders present, the less likely any individual is to help (<strong>diffusion of responsibility</strong>). <strong>Altruism</strong> may be driven by empathy (Batson). <strong>Aggression</strong> is influenced by <strong>frustration-aggression hypothesis, social learning, and biological factors</strong> (testosterone, amygdala activity)."}
+],
+"4.4":[
+  {title:"Freud's Psychoanalytic Theory",text:"<strong>Freud</strong> proposed personality arises from conflicts among the <strong>id</strong> (pleasure principle), <strong>ego</strong> (reality principle), and <strong>superego</strong> (moral standards). <strong>Defense mechanisms</strong> (repression, projection, displacement, sublimation, rationalization) protect the ego from anxiety."},
+  {title:"Psychosexual Stages",text:"Freud's <strong>psychosexual stages</strong> — oral, anal, phallic (Oedipus/Electra complex), latency, genital — propose that personality is shaped by childhood conflicts. <strong>Fixation</strong> at a stage (from over- or under-gratification) leads to characteristic adult personality traits."},
+  {title:"Neo-Freudian and Psychodynamic Views",text:"<strong>Jung</strong> proposed the <strong>collective unconscious</strong> and archetypes. <strong>Adler</strong> emphasized <strong>inferiority complexes</strong> and striving for superiority. <strong>Horney</strong> critiqued Freud's gender bias and emphasized <strong>basic anxiety</strong> from childhood insecurity. All retained emphasis on unconscious processes."},
+  {title:"Humanistic Theories",text:"<strong>Maslow's hierarchy of needs</strong> culminates in <strong>self-actualization</strong>. <strong>Rogers</strong> emphasized the <strong>self-concept</strong> and the gap between the <strong>ideal self and real self</strong>. <strong>Unconditional positive regard</strong> from others supports healthy personality development. Humanistic approaches emphasize free will and personal growth."}
+],
+"4.5":[
+  {title:"Trait Theories",text:"<strong>Allport</strong> catalogued thousands of trait words. <strong>Cattell</strong> used factor analysis to identify 16 personality factors. The <strong>Big Five (OCEAN)</strong> — <strong>Openness, Conscientiousness, Extraversion, Agreeableness, Neuroticism</strong> — is the most widely accepted model. Traits show moderate <strong>heritability</strong> and cross-cultural consistency."},
+  {title:"Personality Assessment",text:"<strong>Self-report inventories</strong> (MMPI, Big Five questionnaires) are standardized and objective but subject to <strong>social desirability bias</strong>. <strong>Projective tests</strong> (<strong>Rorschach inkblots, TAT</strong>) are less reliable but may reveal unconscious processes. <strong>Behavioral assessment</strong> directly observes behavior in context."},
+  {title:"Social-Cognitive Theory",text:"<strong>Bandura's social-cognitive theory</strong> emphasizes <strong>reciprocal determinism</strong>: personality results from the interaction of <strong>behavior, cognition, and environment</strong>. <strong>Self-efficacy</strong> — belief in one's ability to succeed — strongly predicts behavior. <strong>Locus of control</strong> (Rotter): internal vs. external beliefs about outcomes."},
+  {title:"Person-Situation Debate",text:"<strong>Mischel</strong> challenged trait theory, arguing behavior is more situationally determined than trait-consistent. The modern resolution: personality traits predict <strong>aggregate behavior across situations</strong> but not necessarily behavior in any single situation. <strong>Interactionism</strong> acknowledges both traits and situations matter."}
+],
+"4.6":[
+  {title:"Drive Reduction and Arousal",text:"<strong>Drive reduction theory</strong> (Hull): physiological needs create drives that motivate behavior to restore <strong>homeostasis</strong>. <strong>Arousal theory</strong>: people seek an optimal level of stimulation — the <strong>Yerkes-Dodson law</strong> states moderate arousal produces best performance (lower arousal for complex tasks)."},
+  {title:"Hunger and Eating",text:"Hunger is regulated by the <strong>hypothalamus</strong> (lateral = hunger, ventromedial = satiety), <strong>blood glucose</strong> levels, and hormones (<strong>ghrelin</strong> stimulates hunger; <strong>leptin</strong> signals satiety). <strong>Set point theory</strong> suggests the body maintains a preferred weight. Social, cultural, and psychological factors also influence eating."},
+  {title:"Maslow and Intrinsic/Extrinsic Motivation",text:"<strong>Maslow's hierarchy</strong>: physiological → safety → belongingness → esteem → self-actualization. <strong>Intrinsic motivation</strong> comes from internal satisfaction. <strong>Extrinsic motivation</strong> comes from external rewards. The <strong>overjustification effect</strong>: external rewards can undermine intrinsic motivation."},
+  {title:"Achievement and Self-Determination",text:"<strong>Self-determination theory</strong> (Deci & Ryan): three innate needs — <strong>autonomy, competence, and relatedness</strong> — drive intrinsic motivation. <strong>Achievement motivation</strong> involves the desire to accomplish difficult goals. <strong>Flow</strong> (Csikszentmihalyi) is total absorption in an optimally challenging activity."}
+],
+"4.7":[
+  {title:"Theories of Emotion",text:"<strong>James-Lange</strong>: physiological arousal precedes and causes emotional experience. <strong>Cannon-Bard</strong>: arousal and emotion occur simultaneously and independently. <strong>Schachter-Singer (two-factor)</strong>: emotion = physiological arousal + cognitive label. <strong>Lazarus</strong>: cognitive appraisal is required before emotion."},
+  {title:"Emotional Expression",text:"<strong>Ekman</strong> identified six (later seven) <strong>universal facial expressions</strong>: happiness, sadness, anger, fear, surprise, disgust (+ contempt). <strong>Display rules</strong> are cultural norms governing emotional expression. The <strong>facial feedback hypothesis</strong> suggests that facial expressions can influence emotional experience."},
+  {title:"Physiological Bases of Emotion",text:"The <strong>amygdala</strong> is central to fear processing and emotional memory. The <strong>autonomic nervous system</strong> activates the fight-or-flight response. <strong>LeDoux</strong> identified two pathways: a fast <strong>thalamus-to-amygdala</strong> route (low road) and a slower <strong>thalamus-to-cortex-to-amygdala</strong> route (high road)."},
+  {title:"Stress and Emotion",text:"<strong>Stress</strong> is the body's response to perceived threats or challenges. <strong>Selye's General Adaptation Syndrome (GAS)</strong>: alarm → resistance → exhaustion. <strong>Lazarus's appraisal model</strong> distinguishes <strong>primary appraisal</strong> (threat assessment) and <strong>secondary appraisal</strong> (coping resources). Chronic stress impairs immune function and health."}
+],
+"5.1":[
+  {title:"Health Psychology Overview",text:"<strong>Health psychology</strong> examines how psychological, behavioral, and social factors affect health and illness. The <strong>biopsychosocial model</strong> integrates biological, psychological, and social factors. Behavior is the leading contributor to preventable death (smoking, poor diet, inactivity)."},
+  {title:"Stress and Health",text:"<strong>Chronic stress</strong> elevates <strong>cortisol</strong>, suppresses immune function, and increases risk for cardiovascular disease. <strong>Type A personality</strong> (competitive, hostile) is linked to heart disease — particularly the <strong>hostility</strong> component. <strong>Perceived control</strong> and <strong>social support</strong> buffer against stress."},
+  {title:"Coping Strategies",text:"<strong>Problem-focused coping</strong> addresses the stressor directly (taking action). <strong>Emotion-focused coping</strong> manages emotional responses (reappraisal, seeking support). <strong>Adaptive strategies</strong> include exercise, mindfulness, and social connection. <strong>Maladaptive strategies</strong> include denial, substance use, and avoidance."},
+  {title:"Health-Promoting Behaviors",text:"<strong>Aerobic exercise</strong> reduces anxiety, depression, and stress while improving cognitive function. <strong>Sleep hygiene</strong> supports mental and physical health. <strong>Social support</strong> is one of the strongest predictors of health outcomes. <strong>Mindfulness and relaxation techniques</strong> reduce physiological stress responses."}
+],
+"5.2":[
+  {title:"Positive Psychology",text:"<strong>Positive psychology</strong> (Seligman) studies what makes life worth living — <strong>strengths, virtues, and optimal functioning</strong> rather than pathology. Key topics include <strong>happiness, resilience, gratitude, and meaning</strong>. It complements (rather than replaces) traditional clinical approaches."},
+  {title:"Subjective Well-Being",text:"<strong>Subjective well-being (SWB)</strong> encompasses <strong>life satisfaction, positive affect, and low negative affect</strong>. <strong>Hedonic adaptation</strong>: people return to a baseline happiness level after positive or negative events. Income increases SWB only up to a point; <strong>social relationships</strong> are stronger predictors."},
+  {title:"Character Strengths and Flow",text:"<strong>Peterson and Seligman's VIA classification</strong> identifies 24 character strengths across 6 virtues (wisdom, courage, humanity, justice, temperance, transcendence). Using <strong>signature strengths</strong> in daily life enhances well-being. <strong>Flow states</strong> occur when challenge matches skill level."},
+  {title:"Resilience and Growth",text:"<strong>Resilience</strong> is the ability to recover from adversity. Factors include <strong>optimistic explanatory style, social support, self-efficacy, and emotion regulation</strong>. <strong>Post-traumatic growth</strong> is positive psychological change following struggle with a major life crisis — including enhanced relationships and new possibilities."}
+],
+"5.3":[
+  {title:"Defining Psychological Disorders",text:"Psychological disorders are patterns of behavior or experience that are <strong>deviant, distressful, dysfunctional, and potentially dangerous</strong> (the \"4 D's\"). The <strong>medical model</strong> treats disorders as diseases with biological causes. The <strong>biopsychosocial model</strong> considers biological, psychological, and social factors."},
+  {title:"The DSM-5",text:"The <strong>DSM-5 (Diagnostic and Statistical Manual)</strong> is the standard classification system for mental disorders in the U.S. It uses <strong>descriptive criteria</strong> (symptoms, duration, impairment) rather than causes. Criticisms include <strong>labeling effects, cultural bias</strong>, and boundary issues between normal and abnormal."},
+  {title:"Etiology and Risk Factors",text:"<strong>Diathesis-stress model</strong>: disorders result from the interaction of a genetic/biological <strong>predisposition (diathesis)</strong> and <strong>environmental stressors</strong>. Risk factors include <strong>family history, trauma, substance use, poverty</strong>, and lack of social support. Protective factors include resilience and strong social connections."},
+  {title:"Stigma and Cultural Considerations",text:"<strong>Stigma</strong> — negative attitudes toward mental illness — leads to discrimination, reduced help-seeking, and poorer outcomes. <strong>Culture-bound syndromes</strong> vary across societies. Cultural context affects how disorders are expressed (<strong>symptom presentation</strong>), perceived, and treated. <strong>Cultural competence</strong> in assessment is essential."}
+],
+"5.4":[
+  {title:"Anxiety and Related Disorders",text:"<strong>Generalized anxiety disorder (GAD)</strong>: chronic, excessive worry. <strong>Panic disorder</strong>: recurrent unexpected panic attacks. <strong>Specific phobias</strong>: intense fear of specific objects/situations. <strong>Social anxiety disorder</strong>: fear of social scrutiny. <strong>OCD</strong> involves intrusive thoughts (obsessions) and repetitive behaviors (compulsions)."},
+  {title:"Depressive and Bipolar Disorders",text:"<strong>Major depressive disorder (MDD)</strong>: persistent depressed mood, loss of interest, sleep/appetite changes, fatigue, worthlessness. <strong>Bipolar disorder</strong> involves episodes of <strong>mania</strong> (elevated mood, energy, impulsivity) alternating with depression. <strong>Serotonin, norepinephrine</strong>, and neural circuit dysfunction are implicated."},
+  {title:"Schizophrenia Spectrum",text:"<strong>Schizophrenia</strong> involves <strong>positive symptoms</strong> (hallucinations, delusions, disorganized speech) and <strong>negative symptoms</strong> (flat affect, avolition, social withdrawal). <strong>Dopamine hypothesis</strong>: excess dopamine activity contributes. <strong>Genetic predisposition</strong> is strong (concordance ~48% in identical twins)."},
+  {title:"Trauma, Dissociative, and Personality Disorders",text:"<strong>PTSD</strong> follows exposure to trauma and involves re-experiencing, avoidance, hyperarousal, and negative cognitions. <strong>Dissociative disorders</strong> involve disruptions in identity, memory, or consciousness (e.g., dissociative identity disorder). <strong>Personality disorders</strong> are enduring, inflexible patterns (e.g., borderline, antisocial)."}
+],
+"5.5":[
+  {title:"Psychotherapy Approaches",text:"<strong>Psychodynamic therapy</strong> explores unconscious conflicts and defense mechanisms. <strong>Humanistic/client-centered therapy</strong> (Rogers) provides unconditional positive regard. <strong>Cognitive therapy</strong> (Beck) identifies and restructures distorted thoughts. <strong>CBT</strong> combines cognitive restructuring with behavioral techniques."},
+  {title:"Behavioral Therapies",text:"<strong>Systematic desensitization</strong> pairs relaxation with a fear hierarchy to treat phobias. <strong>Exposure therapy</strong> confronts feared stimuli directly. <strong>Aversion therapy</strong> pairs undesirable behavior with an unpleasant stimulus. <strong>Token economies</strong> use operant conditioning in institutional settings."},
+  {title:"Biomedical Treatments",text:"<strong>Antidepressants</strong> (SSRIs) increase serotonin availability. <strong>Antipsychotics</strong> block dopamine receptors. <strong>Anxiolytics</strong> (benzodiazepines) enhance GABA activity. <strong>Mood stabilizers</strong> (lithium) treat bipolar disorder. <strong>Electroconvulsive therapy (ECT)</strong> is used for severe, treatment-resistant depression."},
+  {title:"Effectiveness and Ethics",text:"<strong>Meta-analyses</strong> show psychotherapy is generally effective, with <strong>CBT having the strongest evidence base</strong>. The <strong>therapeutic alliance</strong> (quality of client-therapist relationship) is the strongest predictor of outcome across approaches. <strong>Evidence-based practice</strong> integrates research evidence, clinical expertise, and patient values."}
+]
+};
+
+// ========================
+// QUIZ QUESTIONS
+// ========================
+const QUESTIONS = [
+// === UNIT 1 ===
+{u:1,q:"A researcher finds that identical twins raised apart show more similar IQ scores than fraternal twins raised together. This finding best supports the role of:",choices:["Environmental enrichment in intelligence","Genetic influence on intelligence","Shared family environment in intelligence","Epigenetic modification of intelligence"],correct:1,explanation:"Higher concordance in identical (monozygotic) twins despite different environments indicates a strong genetic component. Fraternal twins share only ~50% of genes, so lower similarity despite shared environment supports heritability.",concept:"Behavioral Genetics & Heritability"},
+{u:1,q:"Which division of the nervous system would be MOST active when a student is calmly digesting lunch while reading a textbook?",choices:["Sympathetic nervous system","Somatic nervous system","Parasympathetic nervous system","Central nervous system"],correct:2,explanation:"The parasympathetic division of the autonomic nervous system promotes 'rest-and-digest' functions — slowing heart rate, stimulating digestion, and conserving energy during calm states.",concept:"Autonomic Nervous System"},
+{u:1,q:"During an action potential, the neuron's interior becomes positively charged as:",choices:["Potassium ions rush out of the cell","Sodium ions rush into the cell","Neurotransmitters are released from vesicles","GABA inhibits the postsynaptic neuron"],correct:1,explanation:"Depolarization occurs when voltage-gated sodium (Na+) channels open, allowing positively charged sodium ions to flow into the neuron, making the interior temporarily positive.",concept:"Action Potential & Neural Firing"},
+{u:1,stimulus:{text:"A patient presents with difficulty producing fluent speech. She understands what others say and can follow complex instructions, but her own speech is halting, effortful, and limited to short phrases.",source:"Clinical case study"},q:"The patient's symptoms are most consistent with damage to:",choices:["Wernicke's area in the left temporal lobe","The hippocampus in the medial temporal lobe","Broca's area in the left frontal lobe","The occipital lobe visual cortex"],correct:2,explanation:"Broca's area (left frontal lobe) controls speech production. Damage produces Broca's aphasia — halting, effortful speech with intact comprehension. Wernicke's area damage impairs comprehension instead.",concept:"Brain Localization — Broca's Area"},
+{u:1,q:"A person's sleep is monitored in a lab. During one stage, the EEG shows rapid, low-amplitude brain waves similar to wakefulness, and the person's voluntary muscles are essentially paralyzed. This describes:",choices:["N1 (light sleep with theta waves)","N3 (deep sleep with delta waves)","REM sleep","N2 (sleep spindles and K-complexes)"],correct:2,explanation:"REM sleep features rapid, low-amplitude brain waves resembling wakefulness, rapid eye movements, vivid dreaming, and muscle atonia (temporary paralysis of voluntary muscles).",concept:"Sleep Stages — REM Sleep"},
+{u:1,q:"According to Weber's law, a person who can just notice the difference between a 10-pound and an 11-pound weight would need a weight of approximately how many pounds to notice a difference from a 50-pound weight?",choices:["51 pounds","52 pounds","55 pounds","60 pounds"],correct:2,explanation:"Weber's law states the just noticeable difference (JND) is a constant proportion. If the JND for 10 lbs is 1 lb (10%), then for 50 lbs, the JND is 5 lbs (10%), requiring 55 lbs.",concept:"Weber's Law & Difference Threshold"},
+{u:1,q:"Which neurotransmitter's dysfunction is MOST associated with both Parkinson's disease (too little) and schizophrenia (too much activity)?",choices:["Serotonin","Acetylcholine","GABA","Dopamine"],correct:3,explanation:"Dopamine deficiency in the substantia nigra causes the motor symptoms of Parkinson's disease, while excess dopamine activity in certain brain pathways is implicated in schizophrenia's positive symptoms.",concept:"Neurotransmitters — Dopamine"},
+{u:1,q:"Signal detection theory differs from classical threshold theory because it accounts for:",choices:["The physical intensity of the stimulus only","Psychological factors like expectation and motivation","The difference between rods and cones","Weber's constant ratio for each sense"],correct:1,explanation:"Signal detection theory recognizes that detecting a stimulus depends not only on its intensity but also on psychological states — expectations, motivation, fatigue, and decision criteria — producing hits, misses, false alarms, and correct rejections.",concept:"Signal Detection Theory"},
+{u:1,stimulus:{text:"Researchers measured cortisol levels and immune function in caregivers of Alzheimer's patients over a 6-year period. Caregivers showed persistently elevated cortisol and significantly reduced immune response compared to matched controls.",source:"Adapted from Kiecolt-Glaser et al., 1991"},q:"These findings best illustrate which stage of Selye's General Adaptation Syndrome?",choices:["Alarm reaction","Resistance","Exhaustion","Recovery"],correct:2,explanation:"During the resistance stage, the body attempts to cope with ongoing stress by maintaining elevated cortisol. Prolonged exposure depletes resources and impairs immune function, as demonstrated by the caregivers' sustained stress response.",concept:"General Adaptation Syndrome"},
+{u:1,q:"The myelin sheath speeds neural transmission primarily by:",choices:["Increasing the amount of neurotransmitter released","Allowing the action potential to jump between nodes of Ranvier","Strengthening the resting potential of the neuron","Preventing reuptake of neurotransmitters"],correct:1,explanation:"Myelin insulates the axon, forcing the electrical signal to 'jump' between gaps called nodes of Ranvier (saltatory conduction). This dramatically increases transmission speed compared to unmyelinated neurons.",concept:"Myelin Sheath & Saltatory Conduction"},
+{u:1,q:"If a person suffers damage to the hypothalamus, which of the following functions would MOST likely be disrupted?",choices:["Language comprehension","Coordination of voluntary movement","Regulation of hunger, thirst, and body temperature","Processing of visual information"],correct:2,explanation:"The hypothalamus is the brain's key regulator of homeostatic functions including hunger, thirst, body temperature, and the endocrine system through its control of the pituitary gland.",concept:"Brain Structures — Hypothalamus"},
+{u:1,q:"Which research method provides the BEST spatial resolution for identifying which specific brain areas are active during a cognitive task?",choices:["EEG (electroencephalogram)","fMRI (functional magnetic resonance imaging)","Lesion studies","Case studies"],correct:1,explanation:"fMRI measures blood oxygen levels to identify active brain regions with excellent spatial resolution. EEG has better temporal resolution but poor spatial resolution. Lesion studies reveal function only through damage.",concept:"Brain Imaging Methods"},
+{u:1,stimulus:{text:"A patient who suffered a motorcycle accident can remember his childhood, his wedding, and events before the accident, but cannot form any new long-term memories since the injury. He can still learn new motor skills without conscious awareness of having practiced them.",source:"Adapted from Scoville & Milner, 1957"},q:"This pattern of deficits is most consistent with damage to the:",choices:["Amygdala","Cerebellum","Hippocampus","Prefrontal cortex"],correct:2,explanation:"The hippocampus is essential for forming new explicit (declarative) memories. Damage produces anterograde amnesia while leaving old memories and implicit/procedural memory (which depends on the cerebellum and basal ganglia) intact — consistent with H.M.'s case.",concept:"Hippocampus & Memory Systems"},
+{u:1,q:"The endocrine system communicates using _____, which travel through the _____ and tend to have _____ effects compared to neurotransmitters.",choices:["hormones; bloodstream; slower but longer-lasting","neurotransmitters; synaptic cleft; faster","electrical impulses; spinal cord; identical","hormones; neurons; faster but shorter"],correct:0,explanation:"The endocrine system uses hormones transported through the bloodstream. Compared to neurotransmitter signaling (which is fast and brief), hormonal effects are slower to begin but longer-lasting.",concept:"Endocrine System"},
+
+// === UNIT 2 ===
+{u:2,q:"A radiologist examining an X-ray sees a subtle fracture that a medical student misses entirely. This difference is BEST explained by:",choices:["Bottom-up processing differences","Differences in visual acuity","Top-down processing guided by expertise","The absolute threshold for visual stimuli"],correct:2,explanation:"The radiologist's experience creates schemas and expectations (top-down processing) that guide attention to relevant features. The student lacks these knowledge-driven perceptual frameworks.",concept:"Top-Down vs. Bottom-Up Processing"},
+{u:2,q:"A person looking at a broken circle perceives it as a complete circle. This illustrates the Gestalt principle of:",choices:["Proximity","Similarity","Closure","Figure-ground"],correct:2,explanation:"Closure is the Gestalt tendency to perceive incomplete figures as complete. The brain fills in gaps to perceive a whole, organized form rather than disconnected parts.",concept:"Gestalt Principles — Closure"},
+{u:2,q:"Tanya assumes that because her coworker dresses formally, he must be highly intelligent and competent. This is an example of the:",choices:["Availability heuristic","Representativeness heuristic","Anchoring bias","Framing effect"],correct:1,explanation:"The representativeness heuristic judges probability by how well something matches a prototype or stereotype. Tanya assumes formal dress represents intelligence because it fits her mental prototype.",concept:"Heuristics — Representativeness"},
+{u:2,stimulus:{text:"Participants were asked: 'Is the population of Turkey greater or less than 5 million?' or 'Is the population of Turkey greater or less than 65 million?' Those given the 5 million anchor estimated significantly lower populations than those given the 65 million anchor.",source:"Adapted from Tversky & Kahneman, 1974"},q:"This study BEST demonstrates:",choices:["The framing effect on risk decisions","Confirmation bias in information seeking","Anchoring bias in numerical estimation","The availability heuristic"],correct:2,explanation:"Anchoring bias occurs when initial information (the anchor number) disproportionately influences subsequent judgments. Participants' estimates were pulled toward whichever anchor they received, even though the anchors were arbitrary.",concept:"Anchoring Bias"},
+{u:2,q:"According to the Atkinson-Shiffrin model, information must pass through _____ before entering long-term memory.",choices:["The sensory register and then working memory","Long-term potentiation","The hippocampus only","Iconic memory only"],correct:0,explanation:"The Atkinson-Shiffrin three-stage model proposes information flows from sensory memory → short-term/working memory → long-term memory. Rehearsal and encoding transfer information between stages.",concept:"Atkinson-Shiffrin Memory Model"},
+{u:2,q:"A student studies vocabulary words by creating vivid mental images connecting each word to a personal experience. This strategy is MOST effective because it involves:",choices:["Maintenance rehearsal","Shallow acoustic encoding","Deep semantic encoding with self-referencing","Iconic memory storage"],correct:2,explanation:"Creating personal connections involves deep semantic encoding plus self-referencing, both of which produce stronger, more durable memory traces than shallow rehearsal or surface-level processing.",concept:"Levels of Processing & Self-Reference Effect"},
+{u:2,q:"George studied for his exam in the same classroom where he will take the test. Research on memory suggests this will help because of:",choices:["State-dependent memory","The spacing effect","Context-dependent memory","The serial position effect"],correct:2,explanation:"Context-dependent memory shows that retrieval is enhanced when the physical environment at recall matches the encoding environment. Studying in the test room provides matching contextual cues.",concept:"Context-Dependent Memory"},
+{u:2,q:"On a word list, participants best remembered the first few and last few items. This phenomenon is called:",choices:["The misinformation effect","The spacing effect","The serial position effect","Proactive interference"],correct:2,explanation:"The serial position effect shows superior recall for beginning items (primacy — rehearsed into LTM) and ending items (recency — still in STM). Middle items are recalled worst.",concept:"Serial Position Effect"},
+{u:2,stimulus:{text:"Participants watched a video of a car accident. One group was asked, 'How fast were the cars going when they smashed into each other?' Another group was asked, 'How fast were the cars going when they contacted each other?' The 'smashed' group estimated significantly higher speeds and were more likely to falsely report seeing broken glass.",source:"Adapted from Loftus & Palmer, 1974"},q:"This classic study demonstrates:",choices:["Retrograde amnesia from trauma","The misinformation effect and memory reconstruction","State-dependent memory","Proactive interference"],correct:1,explanation:"Loftus and Palmer showed that post-event information (the verb used in the question) altered participants' memory of the event. This demonstrates that memory is reconstructive and susceptible to misleading information.",concept:"Misinformation Effect (Loftus)"},
+{u:2,q:"Sarah learned Spanish in high school and is now struggling to learn French because Spanish vocabulary keeps interfering. This is an example of:",choices:["Retroactive interference","Proactive interference","Retrograde amnesia","Source monitoring error"],correct:1,explanation:"Proactive interference occurs when previously learned information interferes with the ability to learn new information. Sarah's existing Spanish knowledge disrupts her French acquisition.",concept:"Proactive Interference"},
+{u:2,q:"Sternberg's triarchic theory of intelligence includes analytical, creative, and _____ components.",choices:["Emotional","Practical","Spatial","Mathematical"],correct:1,explanation:"Sternberg's triarchic theory identifies three components: analytical (academic problem-solving), creative (novel solutions), and practical (adapting to real-world contexts — 'street smarts').",concept:"Sternberg's Triarchic Theory"},
+{u:2,q:"The Flynn effect refers to:",choices:["Declining IQ scores in industrialized nations","The tendency for IQ tests to be culturally biased","Rising average IQ scores over successive generations","The genetic basis of intelligence becoming stronger"],correct:2,explanation:"The Flynn effect documents that average IQ scores have risen significantly over generations across many countries. This is attributed to environmental factors like improved nutrition, education, and test familiarity.",concept:"The Flynn Effect"},
+{u:2,q:"A test that consistently produces the same scores when administered repeatedly has high:",choices:["Content validity","Predictive validity","Standardization","Reliability"],correct:3,explanation:"Reliability refers to the consistency of a test's results. If retaking the test yields similar scores, it demonstrates high test-retest reliability. Validity (whether it measures what it claims) is a separate property.",concept:"Reliability vs. Validity"},
+{u:2,q:"Working memory differs from the original concept of short-term memory primarily because working memory:",choices:["Has unlimited capacity","Stores information permanently","Actively manipulates and processes information","Only handles visual information"],correct:2,explanation:"Baddeley's working memory model expands STM from a passive store to an active system that manipulates information. It includes the central executive, phonological loop, visuospatial sketchpad, and episodic buffer.",concept:"Working Memory (Baddeley)"},
+
+// === UNIT 3 ===
+{u:3,q:"A researcher comparing the cognitive abilities of 5-year-olds, 10-year-olds, and 15-year-olds at one point in time is using a:",choices:["Longitudinal design","Case study","Cross-sectional design","Experimental design"],correct:2,explanation:"Cross-sectional studies compare different age groups at a single time point. They are faster and cheaper than longitudinal studies but can be confounded by cohort effects (generational differences).",concept:"Research Methods — Cross-Sectional Design"},
+{u:3,q:"In Piaget's theory, a child who cannot understand that the amount of water stays the same when poured from a short, wide glass into a tall, thin glass has not yet mastered:",choices:["Object permanence","Egocentrism","Conservation","Abstract reasoning"],correct:2,explanation:"Conservation — understanding that quantity remains the same despite changes in appearance — develops during the concrete operational stage (ages 7–11). Preoperational children focus on one dimension (height) and fail conservation tasks.",concept:"Piaget — Conservation"},
+{u:3,q:"Vygotsky's zone of proximal development (ZPD) is BEST described as:",choices:["The stage between concrete and formal operations","Tasks a child can do independently","The gap between what a child can do alone and with skilled guidance","The critical period for language acquisition"],correct:2,explanation:"The ZPD represents the range of tasks a child cannot yet do independently but can accomplish with guidance from a more knowledgeable other. Scaffolding within the ZPD maximizes learning.",concept:"Vygotsky — Zone of Proximal Development"},
+{u:3,stimulus:{text:"In a study, 12-month-old infants were briefly separated from their mothers in an unfamiliar room. Upon reunion, one group of infants sought contact with their mothers and were quickly comforted. A second group avoided their mothers or showed indifference. A third group showed a mix of clinging and angry resistance.",source:"Adapted from Ainsworth, 1978"},q:"The three groups respectively represent which attachment styles?",choices:["Avoidant, secure, disorganized","Secure, avoidant, anxious-ambivalent","Anxious-ambivalent, avoidant, secure","Secure, anxious-ambivalent, avoidant"],correct:1,explanation:"Securely attached infants seek comfort and are soothed easily. Avoidant infants show indifference to the caregiver. Anxious-ambivalent infants are clingy yet resistant to comfort — reflecting inconsistent caregiving.",concept:"Ainsworth's Attachment Styles"},
+{u:3,q:"In Erikson's theory, the primary psychosocial crisis of adolescence is:",choices:["Trust vs. mistrust","Industry vs. inferiority","Identity vs. role confusion","Intimacy vs. isolation"],correct:2,explanation:"Erikson's adolescent stage involves identity vs. role confusion — the task of integrating various self-images into a coherent identity. Failure leads to role confusion and uncertainty about one's place in society.",concept:"Erikson — Identity vs. Role Confusion"},
+{u:3,q:"In Pavlov's experiments, the bell BEFORE conditioning was a(n) _____ and AFTER conditioning became a(n) _____.",choices:["Unconditioned stimulus; conditioned stimulus","Conditioned stimulus; unconditioned stimulus","Neutral stimulus; conditioned stimulus","Conditioned response; unconditioned response"],correct:2,explanation:"Before conditioning, the bell was a neutral stimulus (NS) — it did not elicit salivation. After repeated pairing with food (US), the bell became a conditioned stimulus (CS) that could elicit salivation (CR) on its own.",concept:"Classical Conditioning Terminology"},
+{u:3,q:"A child who has been bitten by a golden retriever now fears all dogs. This is an example of:",choices:["Stimulus discrimination","Spontaneous recovery","Stimulus generalization","Higher-order conditioning"],correct:2,explanation:"Stimulus generalization occurs when a conditioned response extends to stimuli similar to the original conditioned stimulus. The child's fear generalizes from golden retrievers to all dogs.",concept:"Stimulus Generalization"},
+{u:3,q:"A parent gives a child a sticker every time the child completes homework. This is an example of:",choices:["Negative reinforcement","Positive punishment","Positive reinforcement","Negative punishment"],correct:2,explanation:"Positive reinforcement adds a pleasant stimulus (sticker) following a behavior (homework completion) to increase the likelihood of that behavior recurring.",concept:"Operant Conditioning — Positive Reinforcement"},
+{u:3,q:"Which reinforcement schedule produces the HIGHEST, most consistent rate of responding and is MOST resistant to extinction?",choices:["Fixed-ratio","Variable-ratio","Fixed-interval","Variable-interval"],correct:1,explanation:"Variable-ratio schedules (reinforcement after an unpredictable number of responses) produce high, steady response rates and strong resistance to extinction — like slot machines or sales commission.",concept:"Reinforcement Schedules — Variable Ratio"},
+{u:3,stimulus:{text:"In Bandura's experiment, children who watched an adult punch, kick, and shout at an inflatable Bobo doll were significantly more likely to imitate those aggressive behaviors when later placed in a room with the doll, compared to children who watched a non-aggressive adult model.",source:"Adapted from Bandura, Ross, & Ross, 1961"},q:"This study is foundational evidence for:",choices:["Classical conditioning of aggression","Operant conditioning through punishment","Observational learning / social learning theory","The Garcia effect on taste aversion"],correct:2,explanation:"The Bobo doll experiment demonstrated that children learn behaviors through observation of models — without direct reinforcement — supporting Bandura's social learning theory and the concept of vicarious learning.",concept:"Bandura's Observational Learning"},
+{u:3,q:"Tolman's research with rats in mazes demonstrated that learning can occur without reinforcement, a concept known as:",choices:["Insight learning","Latent learning","Learned helplessness","Shaping"],correct:1,explanation:"Latent learning occurs without reinforcement and is only demonstrated when motivation is provided. Tolman's rats formed cognitive maps of mazes even without food rewards, demonstrating learning that was hidden until needed.",concept:"Latent Learning (Tolman)"},
+{u:3,q:"A toddler says 'I goed to the store' instead of 'I went to the store.' This error demonstrates:",choices:["A language deficit requiring intervention","Telegraphic speech","Overgeneralization of grammatical rules","The nativist theory is incorrect"],correct:2,explanation:"Overgeneralization occurs when children apply grammatical rules too broadly (adding '-ed' for past tense to irregular verbs). This actually demonstrates rule learning — the child has internalized the pattern even for exceptions.",concept:"Language Development — Overgeneralization"},
+{u:3,q:"According to Chomsky, the language acquisition device (LAD) is:",choices:["A special hearing aid for language-impaired children","An innate biological mechanism for learning grammar","A behavioral reinforcement system for language","A computer program that models language learning"],correct:1,explanation:"Chomsky proposed that humans are born with an innate LAD — a biological predisposition containing universal grammar — that enables children to rapidly acquire any language they are exposed to.",concept:"Chomsky's Nativist Theory — LAD"},
+{u:3,q:"Mirror neurons are significant because they fire both when a person performs an action and when they:",choices:["Sleep during REM stage","Experience pain","Observe someone else performing the same action","Hear a loud noise"],correct:2,explanation:"Mirror neurons activate both during action execution and action observation. They provide a neurological basis for imitation, empathy, and observational learning — key processes in social-cognitive development.",concept:"Mirror Neurons"},
+{u:3,q:"Harlow's monkey experiments demonstrated that infant attachment is PRIMARILY based on:",choices:["Feeding and nourishment","Contact comfort","Cognitive development","Classical conditioning"],correct:1,explanation:"Harlow showed that infant monkeys preferred the soft cloth 'mother' over the wire 'mother' that provided food. This demonstrated that contact comfort — not feeding — is the primary basis of attachment.",concept:"Harlow — Contact Comfort"},
+
+// === UNIT 4 ===
+{u:4,q:"When Maria fails an exam, she blames the unfair test. When her classmate fails, she assumes he didn't study. Maria is demonstrating:",choices:["Self-serving bias and fundamental attribution error","Cognitive dissonance","Just-world hypothesis","Actor-observer bias"],correct:0,explanation:"Maria shows self-serving bias (blaming external factors for her failure) and the fundamental attribution error (attributing her classmate's failure to dispositional factors rather than situational ones).",concept:"Attribution Biases"},
+{u:4,q:"Leon Festinger's cognitive dissonance theory predicts that a person who volunteers to give a boring speech for NO payment will:",choices:["Admit the speech was boring","Change their attitude to believe the speech was interesting","Experience no dissonance","Blame the experimenter"],correct:1,explanation:"With no external justification (payment) for the inconsistency between belief ('boring') and behavior ('promoted it'), the person resolves dissonance by changing their attitude to align with their behavior.",concept:"Cognitive Dissonance Theory"},
+{u:4,stimulus:{text:"In a study, participants were asked to judge the length of lines. Unknown to the real participant, other 'participants' (actually confederates) unanimously gave obviously incorrect answers. On critical trials, approximately 37% of participants conformed to the group's wrong answer.",source:"Adapted from Asch, 1951"},q:"Which of the following would MOST likely REDUCE conformity in this paradigm?",choices:["Increasing the group size from 3 to 15","Having the participant respond publicly","Having one confederate give the correct answer","Making the task more ambiguous"],correct:2,explanation:"Asch found that conformity dropped dramatically when even one dissenter broke unanimity. A single ally giving the correct answer reduced conformity from ~37% to under 10%, showing unanimity is crucial for conformity pressure.",concept:"Asch Conformity — Factors Affecting Conformity"},
+{u:4,q:"In Milgram's obedience study, which factor significantly DECREASED obedience rates?",choices:["The experimenter wearing a lab coat","The study being conducted at Yale University","The learner being in the same room as the teacher","The teacher hearing pre-recorded screams"],correct:2,explanation:"When the learner was in the same room (increased proximity), obedience decreased significantly. Physical distance from the victim made it easier to obey. Proximity to authority increased obedience, while proximity to the victim decreased it.",concept:"Milgram — Factors Affecting Obedience"},
+{u:4,q:"Social loafing is MOST likely to occur when:",choices:["Individual contributions are identifiable","The task is meaningful to participants","The group is large and effort is pooled","A strong leader monitors performance"],correct:2,explanation:"Social loafing — reduced individual effort in groups — increases when the group is large, individual contributions are not identifiable, and the task feels less personally meaningful.",concept:"Social Loafing"},
+{u:4,q:"According to Freud, the part of personality that operates on the reality principle and mediates between instinctual desires and moral standards is the:",choices:["Id","Ego","Superego","Collective unconscious"],correct:1,explanation:"The ego operates on the reality principle, mediating between the id's pleasure-seeking impulses and the superego's moral demands. It finds realistic ways to satisfy desires without violating social norms.",concept:"Freud — Id, Ego, Superego"},
+{u:4,q:"A person who unconsciously channels aggressive impulses into competitive athletics is using the defense mechanism of:",choices:["Projection","Displacement","Sublimation","Reaction formation"],correct:2,explanation:"Sublimation redirects unacceptable impulses into socially acceptable or even admirable activities. Channeling aggression into athletics transforms the impulse constructively — Freud considered this the most mature defense mechanism.",concept:"Defense Mechanisms — Sublimation"},
+{u:4,q:"The Big Five personality traits are:",choices:["Id, ego, superego, conscious, unconscious","Introversion, intuition, thinking, judging, perceiving","Openness, conscientiousness, extraversion, agreeableness, neuroticism","Oral, anal, phallic, latent, genital"],correct:2,explanation:"The Big Five (OCEAN) is the most widely accepted and empirically supported trait model. These five broad dimensions consistently emerge across cultures and predict important life outcomes.",concept:"Big Five Personality Traits"},
+{u:4,q:"Bandura's concept of self-efficacy refers to:",choices:["A general feeling of self-worth","Belief in one's ability to succeed at specific tasks","The desire to achieve one's full potential","An internal locus of control"],correct:1,explanation:"Self-efficacy is one's belief in their capability to execute behaviors necessary to produce specific outcomes. It is task-specific (not general self-esteem) and strongly predicts motivation, effort, and performance.",concept:"Self-Efficacy (Bandura)"},
+{u:4,stimulus:{text:"A researcher told elementary school teachers that certain students (randomly selected) had been identified as 'intellectual bloomers' who would show dramatic academic gains. Eight months later, these randomly labeled students actually showed significantly greater IQ gains than their classmates.",source:"Adapted from Rosenthal & Jacobson, 1968"},q:"This study demonstrates the power of:",choices:["The halo effect on grading","Self-fulfilling prophecy / expectancy effects","Cognitive dissonance in education","Social loafing in classrooms"],correct:1,explanation:"The Pygmalion effect demonstrates self-fulfilling prophecy — teachers' expectations (even based on false information) influenced their behavior toward students, which in turn affected actual student performance.",concept:"Self-Fulfilling Prophecy"},
+{u:4,q:"According to the James-Lange theory of emotion:",choices:["Emotion and physiological arousal occur simultaneously","A cognitive label determines which emotion is experienced","Physiological arousal precedes and causes the emotional experience","The thalamus sends signals to both the cortex and body simultaneously"],correct:2,explanation:"James-Lange theory proposes: stimulus → physiological arousal → emotional experience. You feel afraid BECAUSE your heart races, not the other way around. Different physiological patterns produce different emotions.",concept:"James-Lange Theory of Emotion"},
+{u:4,q:"The Schachter-Singer two-factor theory proposes that emotion requires:",choices:["Only physiological arousal","Only cognitive appraisal","Both physiological arousal and a cognitive label","Activation of the amygdala alone"],correct:2,explanation:"Schachter-Singer's two-factor theory states that emotion arises from two components: physiological arousal (factor 1) plus cognitive interpretation/labeling of that arousal (factor 2). The same arousal can produce different emotions depending on the label.",concept:"Schachter-Singer Two-Factor Theory"},
+{u:4,q:"The Yerkes-Dodson law states that performance is best at:",choices:["The highest possible level of arousal","The lowest possible level of arousal","A moderate level of arousal, with optimal level varying by task complexity","A level of arousal determined by personality type"],correct:2,explanation:"The Yerkes-Dodson law shows an inverted-U relationship between arousal and performance. Moderate arousal is optimal for most tasks, with simpler tasks benefiting from higher arousal and complex tasks from lower arousal.",concept:"Yerkes-Dodson Law"},
+{u:4,q:"The overjustification effect occurs when:",choices:["A person is punished too severely for a behavior","External rewards decrease intrinsic motivation for an activity","A person is given too much positive reinforcement","Expectations are set unrealistically high"],correct:1,explanation:"The overjustification effect shows that providing external rewards for an already intrinsically enjoyable activity can undermine intrinsic motivation. The person shifts from 'I do it because I enjoy it' to 'I do it for the reward.'",concept:"Overjustification Effect"},
+{u:4,q:"A group of friends who initially slightly favored a risky investment become much more enthusiastic about it after discussing it together. This illustrates:",choices:["Groupthink","Social facilitation","Group polarization","Deindividuation"],correct:2,explanation:"Group polarization occurs when group discussion strengthens members' pre-existing attitudes, pushing them toward more extreme positions. Initial slight risk-preference becomes strong risk-preference after discussion.",concept:"Group Polarization"},
+{u:4,q:"The bystander effect suggests that the MORE people present at an emergency, the LESS likely any individual is to help, primarily due to:",choices:["Social facilitation","Diffusion of responsibility","The fundamental attribution error","Deindividuation"],correct:1,explanation:"Diffusion of responsibility — each person assumes someone else will act — is the primary mechanism behind the bystander effect. Responsibility is shared among all observers, reducing each individual's sense of obligation to help.",concept:"Bystander Effect & Diffusion of Responsibility"},
+
+// === UNIT 5 ===
+{u:5,q:"The biopsychosocial model of health differs from the biomedical model by:",choices:["Focusing exclusively on biological causes of illness","Integrating biological, psychological, and social factors","Rejecting the role of biology in health","Emphasizing only psychological factors"],correct:1,explanation:"The biopsychosocial model recognizes that health and illness result from the interaction of biological (genetics, physiology), psychological (stress, coping, beliefs), and social (culture, support, SES) factors — not biology alone.",concept:"Biopsychosocial Model"},
+{u:5,q:"According to Seligman's positive psychology, which of the following is MOST strongly associated with lasting subjective well-being?",choices:["High income","Physical attractiveness","Strong social relationships","Prestigious career"],correct:2,explanation:"Research in positive psychology consistently shows that social connectedness and strong relationships are among the strongest predictors of sustained subjective well-being — more so than income, appearance, or career status.",concept:"Positive Psychology — Subjective Well-Being"},
+{u:5,q:"The 'four D's' used to define psychological disorders are:",choices:["Dangerous, delusional, depressed, dysfunctional","Deviant, distressful, dysfunctional, dangerous","Developmental, diagnostic, dimensional, disordered","Disabling, delusional, destructive, distorted"],correct:1,explanation:"The four D's — deviance (statistical/social norm violation), distress (subjective suffering), dysfunction (impaired daily functioning), and danger (risk to self/others) — help clinicians determine whether behavior constitutes a disorder.",concept:"Defining Psychological Disorders — The 4 D's"},
+{u:5,stimulus:{text:"A 22-year-old college student reports persistent feelings of sadness, loss of interest in activities she previously enjoyed, difficulty sleeping, fatigue, trouble concentrating, and feelings of worthlessness for the past three months. She has withdrawn from friends and is struggling to attend classes.",source:"Clinical case vignette"},q:"Based on DSM-5 criteria, this presentation is MOST consistent with:",choices:["Generalized anxiety disorder","Bipolar I disorder","Major depressive disorder","Schizophrenia"],correct:2,explanation:"The symptoms — persistent depressed mood, anhedonia (loss of interest), sleep disturbance, fatigue, concentration difficulty, worthlessness, and social withdrawal lasting more than two weeks — are hallmark criteria for major depressive disorder.",concept:"Major Depressive Disorder"},
+{u:5,q:"Schizophrenia's 'positive symptoms' include:",choices:["Flat affect and social withdrawal","Hallucinations and delusions","Reduced speech and lack of motivation","Memory loss and confusion"],correct:1,explanation:"Positive symptoms ADD to normal experience: hallucinations (false perceptions), delusions (false beliefs), and disorganized speech/behavior. Negative symptoms SUBTRACT: flat affect, avolition, alogia, and social withdrawal.",concept:"Schizophrenia — Positive vs. Negative Symptoms"},
+{u:5,q:"The diathesis-stress model proposes that psychological disorders result from:",choices:["Purely genetic factors","Purely environmental stressors","A genetic/biological predisposition activated by environmental stress","Childhood trauma exclusively"],correct:2,explanation:"The diathesis-stress model explains that disorders arise from the interaction between a vulnerability (diathesis — genetic, biological, or psychological predisposition) and environmental stressors that trigger its expression.",concept:"Diathesis-Stress Model"},
+{u:5,q:"Which therapy approach would MOST likely involve a therapist helping a client identify and challenge the automatic negative thought 'I'm worthless because I failed one test'?",choices:["Psychoanalytic therapy","Client-centered therapy","Cognitive-behavioral therapy (CBT)","Systematic desensitization"],correct:2,explanation:"CBT (particularly Beck's cognitive therapy) focuses on identifying and restructuring distorted automatic thoughts (like overgeneralization from one failure to total worthlessness) to reduce depression and anxiety.",concept:"Cognitive-Behavioral Therapy (CBT)"},
+{u:5,q:"SSRIs (selective serotonin reuptake inhibitors) work by:",choices:["Blocking dopamine receptors","Increasing GABA activity","Blocking reuptake of serotonin, increasing its availability in the synapse","Stimulating the production of new neurons"],correct:2,explanation:"SSRIs block the reuptake of serotonin into the presynaptic neuron, leaving more serotonin available in the synaptic cleft to bind to postsynaptic receptors. This mechanism alleviates symptoms of depression and anxiety.",concept:"Biomedical Treatment — SSRIs"},
+{u:5,stimulus:{text:"A researcher conducted a meta-analysis of 475 psychotherapy outcome studies and found that, across all types of therapy, the quality of the therapeutic relationship consistently predicted better outcomes — often more strongly than the specific techniques used.",source:"Adapted from Wampold, 2001"},q:"This finding highlights the importance of:",choices:["The biomedical model of treatment","Psychoanalytic interpretation","The therapeutic alliance","Specific CBT techniques"],correct:2,explanation:"The therapeutic alliance — the quality of the working relationship between client and therapist (warmth, trust, collaboration) — is consistently the strongest predictor of therapy outcomes across all approaches, as demonstrated by meta-analytic research.",concept:"Therapeutic Alliance"},
+{u:5,q:"Systematic desensitization is based on the principle of:",choices:["Operant conditioning — positive reinforcement","Observational learning","Classical conditioning — counterconditioning","Psychodynamic free association"],correct:2,explanation:"Systematic desensitization (Wolpe) uses counterconditioning to replace a fear response with relaxation. By pairing a gradual fear hierarchy with deep relaxation (incompatible with anxiety), the conditioned fear is extinguished.",concept:"Systematic Desensitization"},
+{u:5,q:"Which of the following is TRUE about electroconvulsive therapy (ECT)?",choices:["It is the first-line treatment for mild depression","It is effective for severe, treatment-resistant depression","It works by increasing serotonin reuptake","It has been proven ineffective by modern research"],correct:1,explanation:"ECT is used for severe, treatment-resistant depression and involves brief electrical stimulation of the brain under anesthesia. It is often effective when medications and therapy have failed, though it may cause temporary memory issues.",concept:"Electroconvulsive Therapy (ECT)"},
+{u:5,q:"A person who experiences intrusive, unwanted thoughts about contamination and spends hours each day washing their hands is MOST likely experiencing:",choices:["Generalized anxiety disorder","Panic disorder","Obsessive-compulsive disorder","Specific phobia"],correct:2,explanation:"OCD involves obsessions (intrusive, unwanted thoughts — here, contamination fears) and compulsions (repetitive behaviors performed to reduce anxiety — here, excessive handwashing). The compulsions are time-consuming and distressing.",concept:"Obsessive-Compulsive Disorder (OCD)"},
+{u:5,q:"Problem-focused coping differs from emotion-focused coping in that problem-focused coping:",choices:["Addresses the emotional reaction to stress","Uses denial and avoidance strategies","Directly addresses the source of the stressor","Is always more effective"],correct:2,explanation:"Problem-focused coping involves taking direct action to change or eliminate the stressor (e.g., studying more for an exam). Emotion-focused coping manages the emotional response (e.g., seeking comfort, reappraising). Both can be adaptive depending on the situation.",concept:"Coping Strategies"},
+{u:5,q:"Post-traumatic growth refers to:",choices:["Worsening symptoms after trauma exposure","Positive psychological change following struggle with adversity","The development of PTSD","Physical growth spurts triggered by stress hormones"],correct:1,explanation:"Post-traumatic growth is the positive psychological transformation that can occur after struggling with highly challenging life circumstances — including enhanced relationships, new possibilities, greater appreciation for life, personal strength, and spiritual development.",concept:"Post-Traumatic Growth"},
+{u:5,q:"The strongest predictor of positive therapy outcomes across ALL types of psychotherapy is:",choices:["The specific technique used by the therapist","The severity of the client's disorder","The therapeutic alliance between client and therapist","Whether medication is also prescribed"],correct:2,explanation:"Research consistently shows that the therapeutic alliance — the collaborative bond, mutual trust, and agreement on goals between client and therapist — is the strongest predictor of positive outcomes regardless of therapeutic orientation.",concept:"Common Factors in Therapy"},
+{u:5,stimulus:{text:"A patient with bipolar disorder has been prescribed lithium to manage mood episodes. Blood levels must be monitored regularly because the therapeutic dose is close to the toxic dose. The patient reports more stable mood but complains of increased thirst and weight gain.",source:"Adapted from clinical pharmacology guidelines"},q:"This scenario illustrates a key challenge of biomedical treatment, namely:",choices:["The placebo effect confounding results","Side effects and the need for careful monitoring with psychotropic medications","The therapeutic alliance being more important than medication","CBT being more effective than medication for bipolar disorder"],correct:1,explanation:"Psychotropic medications often have significant side effects and require monitoring. Lithium has a narrow therapeutic window (effective dose close to toxic dose), requiring regular blood level checks and management of side effects like thirst and weight gain.",concept:"Biomedical Treatment — Medication Management"}
+];
+
+// ========================
+// FLASHCARDS
+// ========================
+const FLASHCARDS = [
+{front:"The junction between two neurons where neurotransmitters cross a tiny gap to transmit signals",back:"Synapse",unit:1},
+{front:"A fatty substance that insulates axons, speeding up neural impulse transmission",back:"Myelin Sheath",unit:1},
+{front:"The principle that a neuron either fires completely or not at all — there is no partial firing",back:"All-or-None Principle",unit:1},
+{front:"The brain structure that relays all sensory information (except smell) to the appropriate cortical area",back:"Thalamus",unit:1},
+{front:"The brain structure essential for forming new explicit long-term memories",back:"Hippocampus",unit:1},
+{front:"The body's 'fight-or-flight' system that activates during perceived threat or stress",back:"Sympathetic Nervous System",unit:1},
+{front:"The minimum stimulation needed to detect a particular stimulus 50% of the time",back:"Absolute Threshold",unit:1},
+{front:"The tendency to fill in gaps in visual information to perceive complete, whole objects",back:"Gestalt Principle of Closure",unit:2},
+{front:"A mental shortcut that judges likelihood based on how easily examples come to mind",back:"Availability Heuristic",unit:2},
+{front:"The memory model proposing three stages: sensory → short-term → long-term",back:"Atkinson-Shiffrin Model",unit:2},
+{front:"Deep processing that connects new information to personal meaning and experience",back:"Self-Reference Effect",unit:2},
+{front:"The phenomenon where items at the beginning and end of a list are recalled best",back:"Serial Position Effect",unit:2},
+{front:"Old learning interfering with the ability to remember new learning",back:"Proactive Interference",unit:2},
+{front:"The rising trend of average IQ scores increasing across generations worldwide",back:"Flynn Effect",unit:2},
+{front:"Piaget's stage (ages 2-7) characterized by egocentrism and inability to conserve",back:"Preoperational Stage",unit:3},
+{front:"The range between what a child can do alone and what they can do with skilled help",back:"Zone of Proximal Development (ZPD)",unit:3},
+{front:"Erikson's adolescent crisis involving the search for a coherent sense of self",back:"Identity vs. Role Confusion",unit:3},
+{front:"In classical conditioning, when an extinguished response reappears after a rest period",back:"Spontaneous Recovery",unit:3},
+{front:"A reinforcement schedule where rewards come after an unpredictable number of responses",back:"Variable-Ratio Schedule",unit:3},
+{front:"Learning that occurs through watching others, demonstrated by the Bobo doll experiment",back:"Observational Learning",unit:3},
+{front:"Overestimating personality and underestimating situations when explaining others' behavior",back:"Fundamental Attribution Error",unit:3},
+{front:"The discomfort from holding contradictory beliefs, motivating attitude change",back:"Cognitive Dissonance",unit:4},
+{front:"Milgram's finding that most people will obey authority even to deliver dangerous shocks",back:"Obedience to Authority",unit:4},
+{front:"Freud's personality structure operating on the reality principle, mediating id and superego",back:"Ego",unit:4},
+{front:"The five broad personality dimensions: Openness, Conscientiousness, Extraversion, Agreeableness, Neuroticism",back:"Big Five (OCEAN) Model",unit:4},
+{front:"Bandura's belief that behavior, cognition, and environment mutually influence each other",back:"Reciprocal Determinism",unit:4},
+{front:"The theory that physiological arousal comes first and causes emotional experience",back:"James-Lange Theory",unit:4},
+{front:"The theory requiring both physiological arousal AND a cognitive label to produce emotion",back:"Schachter-Singer Two-Factor Theory",unit:4},
+{front:"Model integrating biological, psychological, and social factors in health and illness",back:"Biopsychosocial Model",unit:5},
+{front:"The standard classification system for psychological disorders used in the United States",back:"DSM-5",unit:5},
+{front:"Model proposing disorders arise from genetic vulnerability activated by environmental stress",back:"Diathesis-Stress Model",unit:5},
+{front:"Therapy that identifies and restructures distorted thinking patterns to change feelings and behavior",back:"Cognitive-Behavioral Therapy (CBT)",unit:5},
+{front:"Antidepressants that increase serotonin availability by blocking its reuptake",back:"SSRIs (Selective Serotonin Reuptake Inhibitors)",unit:5},
+{front:"Psychotic disorder characterized by hallucinations, delusions, and disorganized thinking",back:"Schizophrenia",unit:5},
+{front:"The quality of the client-therapist relationship, the strongest predictor of therapy outcomes",back:"Therapeutic Alliance",unit:5},
+{front:"Positive psychological change that emerges from the struggle with highly challenging life circumstances",back:"Post-Traumatic Growth",unit:5}
+];
+
+// ========================
+// COLLECTIBLE CARDS
+// ========================
+const CARDS = [
+{id:1,name:"Wilhelm Wundt",type:"Figure",element:"🔬 Science",hp:65,rarity:"Common",title:"Father of Psychology",years:"1832–1920",fact:"Founded the first psychology laboratory in Leipzig in 1879, establishing psychology as a formal experimental science.",wiki:"Wilhelm_Wundt"},
+{id:2,name:"William James",type:"Figure",element:"🔬 Science",hp:70,rarity:"Common",title:"Champion of Functionalism",years:"1842–1910",fact:"Wrote Principles of Psychology and championed functionalism — studying how mental processes help organisms adapt.",wiki:"William_James"},
+{id:3,name:"Ivan Pavlov",type:"Figure",element:"🧪 Behavior",hp:65,rarity:"Common",title:"Master of Conditioning",years:"1849–1936",fact:"Discovered classical conditioning through salivation experiments with dogs — the foundation of associative learning.",wiki:"Ivan_Pavlov"},
+{id:4,name:"John Watson",type:"Figure",element:"🧪 Behavior",hp:60,rarity:"Common",title:"Father of Behaviorism",years:"1878–1958",fact:"Launched behaviorism and conducted the Little Albert experiment, proving fears can be classically conditioned.",wiki:"John_B._Watson"},
+{id:5,name:"B.F. Skinner",type:"Figure",element:"🧪 Behavior",hp:85,rarity:"Uncommon",title:"Architect of Operant Conditioning",years:"1904–1990",fact:"Developed operant conditioning and reinforcement schedules using the Skinner Box to shape voluntary behavior.",wiki:"B._F._Skinner"},
+{id:6,name:"Albert Bandura",type:"Figure",element:"🧪 Behavior",hp:85,rarity:"Rare",title:"Pioneer of Social Learning",years:"1925–2021",fact:"His Bobo doll study proved children learn aggression through observation, founding social-cognitive learning theory.",wiki:"Albert_Bandura"},
+{id:7,name:"Sigmund Freud",type:"Figure",element:"🧠 Mind",hp:90,rarity:"Rare",title:"Father of Psychoanalysis",years:"1856–1939",fact:"Created psychoanalysis and proposed the id, ego, and superego — the unconscious drives beneath conscious thought.",wiki:"Sigmund_Freud"},
+{id:8,name:"Carl Jung",type:"Figure",element:"🧠 Mind",hp:75,rarity:"Uncommon",title:"Explorer of the Collective Unconscious",years:"1875–1961",fact:"Proposed the collective unconscious and archetypes — universal symbols shared across all human cultures.",wiki:"Carl_Jung"},
+{id:9,name:"Abraham Maslow",type:"Figure",element:"🌱 Growth",hp:80,rarity:"Uncommon",title:"Architect of Self-Actualization",years:"1908–1970",fact:"Created the hierarchy of needs, arguing humans are driven toward self-actualization at the highest level.",wiki:"Abraham_Maslow"},
+{id:10,name:"Carl Rogers",type:"Figure",element:"🌱 Growth",hp:80,rarity:"Uncommon",title:"Champion of the Self",years:"1902–1987",fact:"Developed client-centered therapy built on unconditional positive regard, empathy, and genuineness.",wiki:"Carl_Rogers"},
+{id:11,name:"Jean Piaget",type:"Figure",element:"🌱 Growth",hp:90,rarity:"Rare",title:"Master of Cognitive Stages",years:"1896–1980",fact:"Identified four stages of cognitive development — sensorimotor, preoperational, concrete operational, formal operational.",wiki:"Jean_Piaget"},
+{id:12,name:"Lev Vygotsky",type:"Figure",element:"🌱 Growth",hp:70,rarity:"Common",title:"Theorist of Social Learning",years:"1896–1934",fact:"Proposed the zone of proximal development — learning is maximized with guided support from a skilled helper.",wiki:"Lev_Vygotsky"},
+{id:13,name:"Erik Erikson",type:"Figure",element:"🌱 Growth",hp:80,rarity:"Uncommon",title:"Mapper of the Lifespan",years:"1902–1994",fact:"Mapped eight psychosocial stages across the lifespan, from trust vs. mistrust to integrity vs. despair.",wiki:"Erik_Erikson"},
+{id:14,name:"Lawrence Kohlberg",type:"Figure",element:"🌱 Growth",hp:65,rarity:"Common",title:"Architect of Moral Reasoning",years:"1927–1987",fact:"Proposed three levels of moral reasoning — preconventional, conventional, postconventional — using ethical dilemmas.",wiki:"Lawrence_Kohlberg"},
+{id:15,name:"Mary Ainsworth",type:"Figure",element:"🌱 Growth",hp:75,rarity:"Uncommon",title:"Pioneer of Attachment Research",years:"1913–1999",fact:"Identified attachment styles (secure, avoidant, anxious) using the Strange Situation paradigm with infants.",wiki:"Mary_Ainsworth"},
+{id:16,name:"Harry Harlow",type:"Figure",element:"🔬 Science",hp:65,rarity:"Common",title:"Researcher of Contact Comfort",years:"1905–1981",fact:"Wire vs. cloth mother experiments proved contact comfort — not feeding — drives infant attachment.",wiki:"Harry_Harlow"},
+{id:17,name:"Stanley Milgram",type:"Figure",element:"👥 Social",hp:100,rarity:"Rare",title:"Revealer of Obedience",years:"1933–1984",fact:"65% of participants delivered maximum 'shocks' in his obedience study, revealing the power of authority.",wiki:"Stanley_Milgram"},
+{id:18,name:"Philip Zimbardo",type:"Figure",element:"👥 Social",hp:90,rarity:"Rare",title:"Architect of the Prison Study",years:"1933–2024",fact:"The Stanford Prison Experiment showed how situational roles can rapidly override individual personality.",wiki:"Philip_Zimbardo"},
+{id:19,name:"Solomon Asch",type:"Figure",element:"👥 Social",hp:75,rarity:"Uncommon",title:"Demonstrator of Conformity",years:"1907–1996",fact:"Line-judgment experiments showed participants conformed to an obviously wrong group answer 37% of the time.",wiki:"Solomon_Asch"},
+{id:20,name:"Leon Festinger",type:"Figure",element:"👥 Social",hp:65,rarity:"Common",title:"Theorist of Dissonance",years:"1919–1989",fact:"Developed cognitive dissonance theory — mental tension from conflicting beliefs drives attitude change.",wiki:"Leon_Festinger"},
+{id:21,name:"Elizabeth Loftus",type:"Figure",element:"🧠 Mind",hp:85,rarity:"Rare",title:"Challenger of Memory",years:"1944–",fact:"Proved that misleading post-event information distorts eyewitness memory, challenging the reliability of recall.",wiki:"Elizabeth_Loftus"},
+{id:22,name:"Noam Chomsky",type:"Figure",element:"🧠 Mind",hp:80,rarity:"Uncommon",title:"Linguist of Innate Grammar",years:"1928–",fact:"Proposed the language acquisition device (LAD) — an innate biological capacity for learning grammar.",wiki:"Noam_Chomsky"},
+{id:23,name:"Paul Broca",type:"Figure",element:"🔬 Science",hp:55,rarity:"Common",title:"Discoverer of Speech Production",years:"1824–1880",fact:"Discovered that damage to the left frontal lobe (Broca's area) impairs speech production but not comprehension.",wiki:"Paul_Broca"},
+{id:24,name:"Carl Wernicke",type:"Figure",element:"🔬 Science",hp:55,rarity:"Common",title:"Mapper of Comprehension",years:"1848–1905",fact:"Identified the temporal lobe region (Wernicke's area) critical for language comprehension.",wiki:"Carl_Wernicke"},
+{id:25,name:"Roger Sperry",type:"Figure",element:"🔬 Science",hp:80,rarity:"Uncommon",title:"Split-Brain Pioneer",years:"1913–1994",fact:"Split-brain research proved hemispheric lateralization — the left and right brain process information differently.",wiki:"Roger_Wolcott_Sperry"},
+{id:26,name:"Hermann Ebbinghaus",type:"Figure",element:"🧠 Mind",hp:60,rarity:"Common",title:"Pioneer of Memory Research",years:"1850–1909",fact:"Discovered the forgetting curve and the spacing effect through pioneering memory experiments with nonsense syllables.",wiki:"Hermann_Ebbinghaus"},
+{id:27,name:"Martin Seligman",type:"Figure",element:"🌱 Growth",hp:85,rarity:"Uncommon",title:"Founder of Positive Psychology",years:"1942–",fact:"Discovered learned helplessness and later founded positive psychology — the science of human flourishing.",wiki:"Martin_Seligman"},
+{id:28,name:"Daniel Kahneman",type:"Figure",element:"🧠 Mind",hp:100,rarity:"Rare",title:"Nobel Laureate of Judgment",years:"1934–2024",fact:"Nobel Prize winner who revealed that cognitive heuristics produce systematic biases in human judgment.",wiki:"Daniel_Kahneman"},
+{id:29,name:"Alfred Binet",type:"Figure",element:"🔬 Science",hp:65,rarity:"Common",title:"Creator of the IQ Test",years:"1857–1911",fact:"Created the first practical intelligence test (1905) to identify students needing extra academic support.",wiki:"Alfred_Binet"},
+{id:30,name:"Howard Gardner",type:"Figure",element:"🌱 Growth",hp:60,rarity:"Common",title:"Theorist of Multiple Intelligences",years:"1943–",fact:"Challenged the single-IQ model with multiple intelligences — linguistic, spatial, interpersonal, and more.",wiki:"Howard_Gardner"},
+{id:31,name:"Robert Sternberg",type:"Figure",element:"🧠 Mind",hp:65,rarity:"Common",title:"Triarchic Theorist",years:"1949–",fact:"Proposed the triarchic theory: intelligence involves analytical, creative, and practical components.",wiki:"Robert_Sternberg"},
+{id:32,name:"Hans Selye",type:"Figure",element:"🔬 Science",hp:70,rarity:"Common",title:"Discoverer of the Stress Response",years:"1907–1982",fact:"Described the General Adaptation Syndrome — alarm, resistance, exhaustion — as the universal stress response.",wiki:"Hans_Selye"},
+{id:33,name:"Aaron Beck",type:"Figure",element:"💊 Health",hp:85,rarity:"Uncommon",title:"Father of Cognitive Therapy",years:"1921–2021",fact:"Developed cognitive therapy targeting distorted thinking patterns — now a cornerstone of CBT for depression.",wiki:"Aaron_T._Beck"},
+{id:34,name:"Mary Cover Jones",type:"Figure",element:"🧪 Behavior",hp:70,rarity:"Uncommon",title:"Mother of Behavior Therapy",years:"1897–1987",fact:"Used counterconditioning to eliminate Little Peter's conditioned fear of rabbits — the first behavioral therapy.",wiki:"Mary_Cover_Jones"},
+{id:35,name:"Little Albert Experiment",type:"Event",element:"🧪 Behavior",hp:105,rarity:"Epic",title:"The Birth of Conditioned Fear",years:"1920",fact:"Watson conditioned a 9-month-old to fear a white rat, proving emotional responses can be classically conditioned.",wiki:"Little_Albert_experiment"},
+{id:36,name:"Stanford Prison Experiment",type:"Event",element:"👥 Social",hp:110,rarity:"Epic",title:"The Power of the Situation",years:"1971",fact:"Guards became abusive and prisoners broke down within days, demonstrating the power of situational forces.",wiki:"Stanford_prison_experiment"},
+{id:37,name:"Milgram Obedience Study",type:"Event",element:"👥 Social",hp:120,rarity:"Epic",title:"The Shocking Truth",years:"1963",fact:"Ordinary people delivered what they believed were dangerous shocks, revealing the terrifying reach of obedience.",wiki:"Milgram_experiment"},
+{id:38,name:"Bobo Doll Experiment",type:"Event",element:"🧪 Behavior",hp:105,rarity:"Epic",title:"See It, Do It",years:"1961",fact:"Children who watched adults attack a doll imitated the aggression — foundational proof of observational learning.",wiki:"Bobo_doll_experiment"},
+{id:39,name:"Phineas Gage Case",type:"Event",element:"🔬 Science",hp:145,rarity:"Legendary",title:"The Man Who Changed Neuroscience",years:"1848",fact:"An iron rod destroyed Gage's prefrontal cortex, transforming his personality and proving the brain controls behavior.",wiki:"Phineas_Gage"},
+{id:40,name:"Kitty Genovese Case",type:"Event",element:"👥 Social",hp:150,rarity:"Legendary",title:"The Birth of Bystander Research",years:"1964",fact:"Her murder inspired research on the bystander effect and diffusion of responsibility in large groups.",wiki:"Murder_of_Kitty_Genovese"},
+{id:41,name:"Mr. Cole",type:"Figure",element:"✨ Wisdom",hp:999,rarity:"Mythical",title:"The Psych Whisperer",years:"Era of Greatness",fact:"Legend has it that students who pull this card achieve instant clarity on every FRQ. The rarest mind in the collection.",wiki:null,isTeacher:true},
+{id:42,name:"Mrs. Harmon",type:"Figure",element:"✨ Wisdom",hp:999,rarity:"Mythical",title:"Architect of 5s",years:"Era of Greatness",fact:"Her lessons rewire neural pathways for peak performance. Students report a +10 boost on every AP exam section.",wiki:null,isTeacher:true}
+];
+
+// ========================
+// APP STATE & PERSISTENCE
+// ========================
+const STORAGE_KEY = 'apush_psych_state';
+let state = {
+  coins: 0,
+  streak: 0,
+  totalCorrect: 0,
+  collectedCards: [],
+  missedQuestions: [],
+  correctInRow: 0,
+  quizHistory: {}
+};
+
+function loadState() {
+  try {
+    const saved = localStorage.getItem(STORAGE_KEY);
+    if (saved) {
+      const parsed = JSON.parse(saved);
+      state = { ...state, ...parsed };
+    }
+  } catch(e) { console.log('State load error:', e); }
+}
+
+function saveState() {
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  } catch(e) { console.log('State save error:', e); }
+}
+
+// ========================
+// IMAGE CACHE
+// ========================
+const imageCache = {};
+
+async function fetchWikiImage(wikiTitle) {
+  if (!wikiTitle) return null;
+  if (imageCache[wikiTitle]) return imageCache[wikiTitle];
+  try {
+    const resp = await fetch(`https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(wikiTitle)}`);
+    const data = await resp.json();
+    if (data.thumbnail && data.thumbnail.source) {
+      const url = data.thumbnail.source.replace(/\/\d+px-/, '/600px-');
+      imageCache[wikiTitle] = url;
+      return url;
+    }
+  } catch(e) { console.log('Wiki fetch error:', wikiTitle, e); }
+  return null;
+}
+
+// Preload images
+async function preloadImages() {
+  const promises = CARDS.filter(c => c.wiki).map(c => fetchWikiImage(c.wiki));
+  await Promise.allSettled(promises);
+}
+
+// ========================
+// NAVIGATION
+// ========================
+let currentPage = 'home';
+
+function switchPage(page) {
+  currentPage = page;
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+
+  const pageMap = { home:'homePage', study:'studyPage', quiz:'quizPage', flashcards:'flashcardsPage', cards:'cardsPage' };
+  document.getElementById(pageMap[page]).classList.add('active');
+  document.getElementById('nav' + page.charAt(0).toUpperCase() + page.slice(1)).classList.add('active');
+
+  if (page === 'home') updateHome();
+  if (page === 'study') initStudy();
+  if (page === 'quiz') initQuiz();
+  if (page === 'flashcards') initFlashcards();
+  if (page === 'cards') initCards();
+
+  window.scrollTo(0, 0);
+}
+
+// ========================
+// HOME
+// ========================
+function updateHome() {
+  document.getElementById('homeCoins').textContent = state.coins;
+  document.getElementById('homeStreak').textContent = state.streak;
+  document.getElementById('homeCorrect').textContent = state.totalCorrect;
+  document.getElementById('homeCards').textContent = state.collectedCards.length;
+
+  const grid = document.getElementById('unitGrid');
+  grid.innerHTML = UNITS.map(u => {
+    const unitQs = QUESTIONS.filter(q => q.u === u.id);
+    const answered = unitQs.filter(q => state.quizHistory[`${u.id}-${unitQs.indexOf(q)}`]).length;
+    const pct = unitQs.length > 0 ? Math.round((answered / unitQs.length) * 100) : 0;
+    return `<div class="unit-card" onclick="switchPage('study')">
+      <div class="unit-icon" style="background:${u.color}15;color:${u.color}">${u.icon}</div>
+      <div class="unit-card-info">
+        <div class="unit-card-title">Unit ${u.id}: ${u.name}</div>
+        <div class="unit-card-topics">${u.topics.length} topics · ${unitQs.length} questions</div>
+        <div class="unit-card-progress">
+          <div class="unit-card-progress-fill" style="width:${pct}%;background:${u.color}"></div>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+
+  // Missed questions
+  const missedDiv = document.getElementById('missedList');
+  if (state.missedQuestions.length === 0) {
+    missedDiv.innerHTML = '<p style="padding:0 4px;font-size:0.88rem;color:var(--text-light);">No missed questions yet. Start a quiz!</p>';
+  } else {
+    missedDiv.innerHTML = state.missedQuestions.slice(-10).reverse().map(m => {
+      return `<div class="missed-item">
+        <div>${m.question}</div>
+        <div class="correct-ans">✓ ${m.correctAnswer}</div>
+      </div>`;
+    }).join('');
+  }
+}
+
+// ========================
+// STUDY
+// ========================
+let currentStudyUnit = 1;
+
+function initStudy() {
+  const tabs = document.getElementById('studyUnitTabs');
+  tabs.innerHTML = UNITS.map(u =>
+    `<button class="sub-tab ${u.id === currentStudyUnit ? 'active' : ''}" onclick="selectStudyUnit(${u.id})">${u.icon} Unit ${u.id}</button>`
+  ).join('');
+  renderStudyTopics();
+}
+
+function selectStudyUnit(uid) {
+  currentStudyUnit = uid;
+  document.querySelectorAll('#studyUnitTabs .sub-tab').forEach(t => t.classList.remove('active'));
+  event.target.classList.add('active');
+  document.getElementById('studyContentView').style.display = 'none';
+  renderStudyTopics();
+}
+
+function renderStudyTopics() {
+  const u = UNITS.find(u => u.id === currentStudyUnit);
+  const list = document.getElementById('studyTopicList');
+  list.style.display = 'block';
+  list.innerHTML = u.topics.map(t => {
+    const key = t.split(' ')[0];
+    return `<button class="study-topic-btn" onclick="showStudyContent('${key}')">${t}</button>`;
+  }).join('');
+}
+
+function showStudyContent(topicKey) {
+  const sections = STUDY[topicKey];
+  if (!sections) return;
+  document.getElementById('studyTopicList').style.display = 'none';
+  const view = document.getElementById('studyContentView');
+  view.style.display = 'block';
+  view.innerHTML = `
+    <button class="back-btn" onclick="backToStudyTopics()">← Back to topics</button>
+    <div class="study-content">
+      ${sections.map(s => `<div class="study-section"><h3>${s.title}</h3><p>${s.text}</p></div>`).join('')}
+    </div>
+  `;
+}
+
+function backToStudyTopics() {
+  document.getElementById('studyContentView').style.display = 'none';
+  document.getElementById('studyTopicList').style.display = 'block';
+}
+
+// ========================
+// QUIZ
+// ========================
+let quizState = { unit: null, questions: [], current: 0, score: 0, answered: false };
+
+function initQuiz() {
+  const sel = document.getElementById('quizUnitSelect');
+  document.getElementById('quizContainer').style.display = 'none';
+  sel.style.display = 'block';
+  sel.innerHTML = UNITS.map(u => {
+    const count = QUESTIONS.filter(q => q.u === u.id).length;
+    return `<button class="quiz-unit-btn" onclick="startQuiz(${u.id})">
+      ${u.icon} Unit ${u.id}: ${u.name}
+      <span class="quiz-badge">${count} Qs</span>
+    </button>`;
+  }).join('') + `<button class="quiz-unit-btn" onclick="startQuiz(0)" style="border-color:var(--accent);">
+    🎯 All Units Mixed
+    <span class="quiz-badge">${QUESTIONS.length} Qs</span>
+  </button>`;
+}
+
+function shuffleArray(arr) {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+function startQuiz(unitId) {
+  let qs = unitId === 0 ? [...QUESTIONS] : QUESTIONS.filter(q => q.u === unitId);
+  qs = shuffleArray(qs).slice(0, 20); // Max 20 per session
+  quizState = { unit: unitId, questions: qs, current: 0, score: 0, answered: false };
+  document.getElementById('quizUnitSelect').style.display = 'none';
+  document.getElementById('quizContainer').style.display = 'block';
+  renderQuizQuestion();
+}
+
+function renderQuizQuestion() {
+  const container = document.getElementById('quizContainer');
+  const q = quizState.questions[quizState.current];
+  const total = quizState.questions.length;
+  const pct = ((quizState.current) / total) * 100;
+
+  // Shuffle choices while tracking correct
+  const indices = q.choices.map((c, i) => i);
+  const shuffled = shuffleArray(indices);
+  quizState.shuffledIndices = shuffled;
+
+  let stimulusHTML = '';
+  if (q.stimulus) {
+    stimulusHTML = `<div class="stimulus-box">${q.stimulus.text}<div class="stimulus-source">— ${q.stimulus.source}</div></div>`;
+  }
+
+  container.innerHTML = `
+    <div class="quiz-progress">
+      <div class="quiz-progress-bar"><div class="quiz-progress-fill" style="width:${pct}%"></div></div>
+      <div class="quiz-progress-text">${quizState.current + 1}/${total}</div>
+    </div>
+    <div class="quiz-question-card">
+      ${stimulusHTML}
+      <div class="quiz-q-text">${q.q}</div>
+      <div class="quiz-choices">
+        ${shuffled.map((origIdx, displayIdx) => `<button class="quiz-choice" onclick="selectAnswer(${displayIdx})" data-orig="${origIdx}">${q.choices[origIdx]}</button>`).join('')}
+      </div>
+      <div id="quizFeedback"></div>
+    </div>
+  `;
+  quizState.answered = false;
+}
+
+function selectAnswer(displayIdx) {
+  if (quizState.answered) return;
+  quizState.answered = true;
+
+  const q = quizState.questions[quizState.current];
+  const origIdx = quizState.shuffledIndices[displayIdx];
+  const isCorrect = origIdx === q.correct;
+
+  const btns = document.querySelectorAll('.quiz-choice');
+  btns.forEach((btn, i) => {
+    btn.classList.add('disabled');
+    const oi = parseInt(btn.dataset.orig);
+    if (oi === q.correct) btn.classList.add('correct');
+    if (i === displayIdx && !isCorrect) btn.classList.add('incorrect');
+  });
+
+  if (isCorrect) {
+    quizState.score++;
+    state.totalCorrect++;
+    state.coins++;
+    state.correctInRow++;
+    state.streak = Math.max(state.streak, state.correctInRow);
+
+    if (state.correctInRow % 3 === 0) {
+      showToast('🎴 3 in a row! Free card pack earned!');
+      state.coins += 3;
+    }
+  } else {
+    state.correctInRow = 0;
+    // Add to missed
+    state.missedQuestions.push({
+      question: q.q.substring(0, 120) + (q.q.length > 120 ? '...' : ''),
+      correctAnswer: q.choices[q.correct]
+    });
+    if (state.missedQuestions.length > 50) state.missedQuestions = state.missedQuestions.slice(-50);
+  }
+
+  saveState();
+
+  const feedback = document.getElementById('quizFeedback');
+  feedback.innerHTML = `
+    <div class="quiz-explanation">
+      ${isCorrect ? '✅ Correct!' : '❌ Incorrect.'} ${q.explanation}
+      <br><span class="key-concept">${q.concept}</span>
+    </div>
+    <button class="quiz-next-btn" onclick="nextQuestion()">${quizState.current < quizState.questions.length - 1 ? 'Next Question →' : 'See Results'}</button>
+  `;
+}
+
+function nextQuestion() {
+  quizState.current++;
+  if (quizState.current >= quizState.questions.length) {
+    showQuizResults();
+  } else {
+    renderQuizQuestion();
+  }
+}
+
+function showQuizResults() {
+  const container = document.getElementById('quizContainer');
+  const pct = Math.round((quizState.score / quizState.questions.length) * 100);
+  let msg = pct >= 90 ? '🌟 Outstanding!' : pct >= 70 ? '💪 Great work!' : pct >= 50 ? '📚 Keep studying!' : '🔄 Review the material and try again!';
+  container.innerHTML = `
+    <div class="quiz-results">
+      <div class="quiz-results-score">${pct}%</div>
+      <div class="quiz-results-label">${quizState.score} of ${quizState.questions.length} correct</div>
+      <div class="quiz-results-msg">${msg}</div>
+      <button class="quiz-next-btn" onclick="initQuiz()" style="margin-top:20px;">Try Another Quiz</button>
+      <button class="quiz-next-btn" onclick="switchPage('home')" style="margin-top:8px;background:var(--dark);">Back to Home</button>
+    </div>
+  `;
+}
+
+// ========================
+// FLASHCARDS
+// ========================
+let fcState = { unit: 1, cards: [], index: 0, flipped: false };
+
+function initFlashcards() {
+  const tabs = document.getElementById('flashcardUnitTabs');
+  tabs.innerHTML = UNITS.map(u =>
+    `<button class="sub-tab ${u.id === fcState.unit ? 'active' : ''}" onclick="selectFlashcardUnit(${u.id})">${u.icon} Unit ${u.id}</button>`
+  ).join('') + `<button class="sub-tab ${fcState.unit === 0 ? 'active' : ''}" onclick="selectFlashcardUnit(0)">🎯 All</button>`;
+  loadFlashcards();
+}
+
+function selectFlashcardUnit(uid) {
+  fcState.unit = uid;
+  fcState.index = 0;
+  fcState.flipped = false;
+  document.querySelectorAll('#flashcardUnitTabs .sub-tab').forEach(t => t.classList.remove('active'));
+  event.target.classList.add('active');
+  loadFlashcards();
+}
+
+function loadFlashcards() {
+  let cards = fcState.unit === 0 ? [...FLASHCARDS] : FLASHCARDS.filter(f => f.unit === fcState.unit);
+  fcState.cards = shuffleArray(cards);
+  fcState.index = 0;
+  fcState.flipped = false;
+  renderFlashcard();
+}
+
+function renderFlashcard() {
+  const container = document.getElementById('flashcardContainer');
+  if (fcState.cards.length === 0) {
+    container.innerHTML = '<p style="text-align:center;color:var(--text-light);padding:40px;">No flashcards for this unit.</p>';
+    return;
+  }
+  const card = fcState.cards[fcState.index];
+  container.innerHTML = `
+    <div class="flashcard-counter">${fcState.index + 1} / ${fcState.cards.length}</div>
+    <div class="flashcard ${fcState.flipped ? 'flipped' : ''}" onclick="flipCard()">
+      <div class="flashcard-label">${fcState.flipped ? '⬆ TERM' : '📖 DEFINITION'}</div>
+      <div class="flashcard-text">${fcState.flipped ? card.back : card.front}</div>
+      ${!fcState.flipped ? '<div class="flashcard-hint">Tap to reveal term</div>' : ''}
+    </div>
+    <div class="flashcard-nav">
+      <button class="flashcard-nav-btn" onclick="prevCard()" ${fcState.index === 0 ? 'disabled style="opacity:0.4"' : ''}>← Prev</button>
+      <button class="flashcard-nav-btn" onclick="loadFlashcards()">🔀 Shuffle</button>
+      <button class="flashcard-nav-btn primary" onclick="nextCard()" ${fcState.index === fcState.cards.length - 1 ? 'disabled style="opacity:0.4"' : ''}>Next →</button>
+    </div>
+  `;
+}
+
+function flipCard() { fcState.flipped = !fcState.flipped; renderFlashcard(); }
+function nextCard() { if (fcState.index < fcState.cards.length - 1) { fcState.index++; fcState.flipped = false; renderFlashcard(); } }
+function prevCard() { if (fcState.index > 0) { fcState.index--; fcState.flipped = false; renderFlashcard(); } }
+
+// ========================
+// CARDS COLLECTION
+// ========================
+let cardFilter = 'all';
+
+function initCards() {
+  document.getElementById('cardsCoins').textContent = state.coins;
+  document.getElementById('cardsCollected').textContent = state.collectedCards.length;
+
+  const isComplete = state.collectedCards.length >= CARDS.length;
+  document.getElementById('collectionBanner').innerHTML = isComplete ?
+    '<div class="collection-complete">🏆 Collection Complete! You are an AP Psychology Master! 🏆</div>' : '';
+  document.getElementById('packBtn').disabled = isComplete || state.coins < 3;
+
+  // Filters
+  const rarities = ['all','Common','Uncommon','Rare','Epic','Legendary','Mythical'];
+  document.getElementById('cardFilters').innerHTML = rarities.map(r =>
+    `<button class="filter-btn ${cardFilter === r ? 'active' : ''}" onclick="setCardFilter('${r}')">${r === 'all' ? 'All' : r}</button>`
+  ).join('');
+
+  renderCollection();
+}
+
+function setCardFilter(f) {
+  cardFilter = f;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  event.target.classList.add('active');
+  renderCollection();
+}
+
+function renderCollection() {
+  const grid = document.getElementById('collectionGrid');
+  let filtered = cardFilter === 'all' ? CARDS : CARDS.filter(c => c.rarity === cardFilter);
+
+  grid.innerHTML = filtered.map(card => {
+    const owned = state.collectedCards.includes(card.id);
+    const img = owned && card.wiki && imageCache[card.wiki] ? imageCache[card.wiki] : null;
+    const elementIcon = card.element.split(' ')[0];
+
+    if (!owned) {
+      return `<div class="mini-card locked">
+        <div style="height:80px;"></div>
+        <div class="mini-card-name">???</div>
+        <div class="mini-card-rarity" style="color:${getRarityColor(card.rarity)}">${card.rarity}</div>
+      </div>`;
+    }
+    return `<div class="mini-card" style="border-color:${getRarityColor(card.rarity)}" onclick="showCardDetail(${card.id})">
+      ${img ? `<img class="mini-card-img" src="${img}" alt="${card.name}" loading="lazy">` : `<div class="mini-card-img" style="display:flex;align-items:center;justify-content:center;font-size:2rem;">${elementIcon}</div>`}
+      <div class="mini-card-name">${card.name}</div>
+      <div class="mini-card-rarity" style="color:${getRarityColor(card.rarity)}">${getRarityStars(card.rarity)}</div>
+    </div>`;
+  }).join('');
+}
+
+function getRarityColor(r) {
+  return {Common:'#9ca3af',Uncommon:'#22c55e',Rare:'#3b82f6',Epic:'#8b5cf6',Legendary:'#f59e0b',Mythical:'#ec4899'}[r] || '#999';
+}
+
+function getRarityStars(r) {
+  return {Common:'★',Uncommon:'★★',Rare:'★★★',Epic:'★★★★',Legendary:'★★★★★',Mythical:'✦✦✦✦✦✦'}[r] || '★';
+}
+
+function getRarityClass(r) {
+  return 'rarity-' + r.toLowerCase();
+}
+
+// ========================
+// CARD DETAIL MODAL
+// ========================
+function showCardDetail(cardId) {
+  const card = CARDS.find(c => c.id === cardId);
+  if (!card) return;
+
+  const modal = document.getElementById('cardModal');
+  const img = card.wiki && imageCache[card.wiki] ? imageCache[card.wiki] : null;
+  const elementIcon = card.element.split(' ')[0];
+  const isMythical = card.rarity === 'Mythical';
+
+  document.getElementById('cardModalContent').innerHTML = `
+    <div class="full-card ${getRarityClass(card.rarity)} ${isMythical ? 'mythical-pulse' : ''}">
+      <div class="full-card-inner holo-shimmer">
+        <div class="full-card-header">
+          <div class="full-card-name">${card.name}</div>
+          <div class="full-card-hp">♥ ${card.hp}</div>
+        </div>
+        <div class="full-card-element">${card.element}</div>
+        <div class="full-card-img-container">
+          ${img ? `<img class="full-card-img" src="${img}" alt="${card.name}">` : `<div class="full-card-img-fallback">${elementIcon}</div>`}
+        </div>
+        <div class="full-card-type-badge">${card.type}</div>
+        <div class="full-card-title">${card.title}</div>
+        <div class="full-card-years">${card.years}</div>
+        <div class="full-card-fact">${card.fact}</div>
+        <div class="full-card-footer">
+          <div class="full-card-stars" style="color:${getRarityColor(card.rarity)}">${getRarityStars(card.rarity)}</div>
+          <div class="full-card-rarity" style="color:${getRarityColor(card.rarity)}">${card.rarity}</div>
+          <div class="full-card-number">#${String(card.id).padStart(3,'0')}</div>
+        </div>
+      </div>
+    </div>
+  `;
+  modal.classList.add('active');
+}
+
+function closeCardModal(e) {
+  if (e.target === document.getElementById('cardModal')) {
+    document.getElementById('cardModal').classList.remove('active');
+  }
+}
+
+// ========================
+// PACK OPENING
+// ========================
+let packCards = [];
+let packIndex = 0;
+
+function openPack() {
+  if (state.coins < 3) { showToast('Not enough coins!'); return; }
+  if (state.collectedCards.length >= CARDS.length) { showToast('Collection complete!'); return; }
+
+  state.coins -= 3;
+  saveState();
+
+  // Draw 3 cards
+  packCards = [];
+  for (let i = 0; i < 3; i++) {
+    const card = drawCard();
+    if (card) packCards.push(card);
+  }
+
+  if (packCards.length === 0) { showToast('All cards collected!'); initCards(); return; }
+
+  packIndex = 0;
+  const overlay = document.getElementById('packOpening');
+  overlay.classList.add('active');
+  revealPackCard();
+}
+
+function drawCard() {
+  const uncollected = CARDS.filter(c => !state.collectedCards.includes(c.id));
+  if (uncollected.length === 0) return null;
+
+  // Weighted by rarity
+  const weights = {Common:40,Uncommon:28,Rare:18,Epic:10,Legendary:4,Mythical:1};
+  let pool = [];
+  for (const card of uncollected) {
+    const w = weights[card.rarity] || 1;
+    for (let i = 0; i < w; i++) pool.push(card);
+  }
+  // If pool empty, fallback
+  if (pool.length === 0) return uncollected[0];
+
+  const selected = pool[Math.floor(Math.random() * pool.length)];
+  state.collectedCards.push(selected.id);
+  saveState();
+  return selected;
+}
+
+function revealPackCard() {
+  if (packIndex >= packCards.length) {
+    document.getElementById('packOpening').classList.remove('active');
+    initCards();
+    return;
+  }
+
+  const card = packCards[packIndex];
+  const img = card.wiki && imageCache[card.wiki] ? imageCache[card.wiki] : null;
+  const elementIcon = card.element.split(' ')[0];
+  const isMythical = card.rarity === 'Mythical';
+
+  document.getElementById('packRevealArea').innerHTML = `
+    <div class="pack-card-reveal">
+      <div class="full-card ${getRarityClass(card.rarity)} ${isMythical ? 'mythical-pulse' : ''}">
+        <div class="full-card-inner holo-shimmer">
+          <div class="full-card-header">
+            <div class="full-card-name">${card.name}</div>
+            <div class="full-card-hp">♥ ${card.hp}</div>
+          </div>
+          <div class="full-card-element">${card.element}</div>
+          <div class="full-card-img-container">
+            ${img ? `<img class="full-card-img" src="${img}" alt="${card.name}">` : `<div class="full-card-img-fallback">${elementIcon}</div>`}
+          </div>
+          <div class="full-card-type-badge">${card.type}</div>
+          <div class="full-card-title">${card.title}</div>
+          <div class="full-card-years">${card.years}</div>
+          <div class="full-card-fact">${card.fact}</div>
+          <div class="full-card-footer">
+            <div class="full-card-stars" style="color:${getRarityColor(card.rarity)}">${getRarityStars(card.rarity)}</div>
+            <div class="full-card-rarity" style="color:${getRarityColor(card.rarity)}">${card.rarity}</div>
+            <div class="full-card-number">#${String(card.id).padStart(3,'0')}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+
+  document.getElementById('packTapText').textContent =
+    packIndex < packCards.length - 1 ? `Card ${packIndex + 1}/${packCards.length} — Tap for next` : 'Tap to close';
+}
+
+function handlePackTap() {
+  packIndex++;
+  revealPackCard();
+}
+
+// ========================
+// TOAST
+// ========================
+function showToast(msg) {
+  const toast = document.createElement('div');
+  toast.className = 'toast';
+  toast.textContent = msg;
+  document.body.appendChild(toast);
+  setTimeout(() => toast.remove(), 2200);
+}
+
+// ========================
+// INIT
+// ========================
+async function init() {
+  loadState();
+  updateHome();
+
+  // Start image preloading
+  await preloadImages();
+
+  // Hide loading screen
+  document.getElementById('loadingScreen').classList.add('hidden');
+  setTimeout(() => document.getElementById('loadingScreen').style.display = 'none', 500);
+}
+
+init();
+</script>
+</body>
+</html>
